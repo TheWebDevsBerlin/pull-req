@@ -41,7 +41,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose
-  .connect('mongodb://localhost/pull-req', {useNewUrlParser: true})
+  .connect('mongodb://localhost/pull-req', {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
