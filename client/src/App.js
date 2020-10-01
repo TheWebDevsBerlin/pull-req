@@ -29,8 +29,6 @@ class App extends Component {
           </Route>
           <Route exact path="/settings">
           <Navbar backButton="/"/> 
-          </Route>
-          <Route exact path="/signup">
           <Signup />
           </Route>
         </Switch>
