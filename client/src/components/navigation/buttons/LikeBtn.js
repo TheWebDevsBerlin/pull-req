@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const styles = (theme) => ({
   root: {
@@ -50,24 +51,16 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function LikeMsg(props) {
+ 
   
   return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+    <>
+     
+       <FavoriteIcon fontSize="large" variant="outlined" color="primary" onClick={props.handleClickOpen} />
+      
+      <Dialog onClose={props.handleClose} aria-labelledby="customized-dialog-title" open={props.open}>
+        <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
           Offer help!
         </DialogTitle>
         <DialogContent dividers>
@@ -76,15 +69,16 @@ export default function CustomizedDialogs() {
           </Typography>
           <TextareaAutosize aria-label="empty textarea" placeholder="Why is your code so bad?" rows="5" cols="60" />
         </DialogContent>
+        
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button autoFocus onClick={props.handleClose} color="primary">
             Pull request
           </Button>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button autoFocus onClick={props.handleClose} color="primary">
             Cancel
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navigation/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TinderCards from "./components/TinderCards"
-import SwipeButtons from "./components/SwipeButtons";
-import Chats from "./components/Chats";
-import ChatScreen from "./components/ChatScreen";
+import SwipeButtons from "./components/navigation/buttons/SwipeButtons";
+import Chats from "./components/chat/Chats";
+import ChatScreen from "./components/chat/ChatScreen";
 import Signup from "./components/Signup";
-import DialogTitle from "./components/LikeMsg";
 import "./App.css";
 
 class App extends Component {
@@ -37,7 +36,6 @@ class App extends Component {
             <TinderCards />
             <SwipeButtons />
             <Signup user={ this.state.user }/>
-            <DialogTitle />
           </Route>
           <Route exact path="/settings">
           <Navbar user={this.state.user} setUser={this.setUser} backButton="/"/> 

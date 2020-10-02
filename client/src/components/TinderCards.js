@@ -1,23 +1,9 @@
 import React, { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
-import database from "./Firebase.js";
 import "./TinderCards.css";
 
 function TinderCards() {
-  const [people, setPeople] = useState([]);
-
-  useEffect(() => {
-   const unsubscribe = database
-      .collection("people")
-      .onSnapshot((snapshot) =>
-        setPeople(snapshot.docs.map((doc) => doc.data()))
-      );
-
-      return () => {
-        //this is for cleanup...
-        unsubscribe();
-      }
-  }, [people]);
+  const [people] = useState([]);
 
   return (
     <div>
