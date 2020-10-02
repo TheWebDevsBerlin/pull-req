@@ -2,11 +2,9 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import PersonIcon from "@material-ui/icons/Person";
 import EditIcon from '@material-ui/icons/Edit';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -42,7 +40,7 @@ export default function TemporaryDrawer(props) {
       logout();
       props.setUser(null);
     };
-  }  
+  }
 
   const list = (anchor) => (
     <div
@@ -77,15 +75,25 @@ export default function TemporaryDrawer(props) {
   );
 
   let anchor = "left";
-  console.log(PersonIcon)
   return (
-    <React.Fragment key={anchor}>
-      <IconButton onClick={toggleDrawer(anchor, true)} style={{borderRadius: "90px"}}>
-        <MenuIcon fontSize="large" className="header_icon" /> 
-      </IconButton>
-      <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-        {list(anchor)}
-      </Drawer>
-    </React.Fragment>
+    <>
+      <React.Fragment key={anchor}>
+        <Button 
+          onClick={toggleDrawer(anchor, true)} 
+          style={{borderRadius: "90px"}}>
+          <MenuIcon 
+            fontSize="large" 
+            className="header_icon" 
+          />
+        </Button>
+        <Drawer 
+          anchor={anchor} 
+          open={state[anchor]} 
+          onClose={toggleDrawer(anchor, false)}
+        >
+          {list(anchor)}
+        </Drawer>
+      </React.Fragment>
+    </>
   );
 }

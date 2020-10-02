@@ -10,10 +10,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -47,18 +43,3 @@ export default function FormDialog(props) {
     </div>
   );
 }
-/*
-  handleLogoutGithub = e => {
-    e.preventDefault();
-    if(this.props.user){
-      logout();
-      this.props.setUser(null);
-    };
-  }
-
-<Button
-  component="button"
-  onClick={this.handleLogoutGithub}>
-  Logout
-</Button>
-*/
