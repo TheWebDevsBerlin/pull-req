@@ -2,23 +2,18 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import PersonIcon from "@material-ui/icons/Person";
 import EditIcon from '@material-ui/icons/Edit';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
-
 import "./Navbar.css";
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import { logout } from '../services/auth';
+import { logout } from '../../services/auth';
 
 const useStyles = makeStyles({
   list: {

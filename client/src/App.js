@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navigation/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TinderCards from "./components/TinderCards"
-import SwipeButtons from "./components/SwipeButtons";
-import Chats from "./components/Chats";
-import ChatScreen from "./components/ChatScreen";
+import SwipeButtons from "./components/navigation/buttons/SwipeButtons";
+import Chats from "./components/chat/Chats";
+import ChatScreen from "./components/chat/ChatScreen";
 import Signup from "./components/Signup";
 import "./App.css";
 

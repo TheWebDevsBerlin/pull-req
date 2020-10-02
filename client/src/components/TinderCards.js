@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import TinderCard from "react-tinder-card";
-// import database from "./Firebase.js";
 import axios from 'axios';
 import "./TinderCards.css";
 

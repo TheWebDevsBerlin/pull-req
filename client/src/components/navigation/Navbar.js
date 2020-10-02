@@ -16,9 +16,7 @@ function Navbar({ backButton, user , setUser }) {
           <ArrowBackIosIcon fontSize="large" className="header_icon" />
         </IconButton>
       ) : (
-        <IconButton> 
           <TemporaryDrawer user={user} setUser={setUser}/> 
-        </IconButton>
       )}
       
       <Link to="/">
