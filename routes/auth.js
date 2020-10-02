@@ -89,7 +89,7 @@ router.get('/github/callback', (req,res) => {
     if (!user) return res.status(400).json({ message: 'Wrong credentials' });
     req.login(user, err => {
       if (err) return res.status(500).json({ message: 'Error while attempting to login' });
-      return res.redirect('http://localhost:3000/settings');
+      return res.redirect('http://localhost:3000');
     });
   })(req, res);
 });

@@ -24,21 +24,21 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/chat/:person">
-            <Navbar backButton="/chat"/> 
+            <Navbar user={this.state.user} setUser={this.setUser} backButton="/chat"/> 
             <ChatScreen />
           </Route>
           <Route exact path="/chat">
-            <Navbar backButton="/"/> 
+            <Navbar user={this.state.user} setUser={this.setUser} backButton="/"/> 
             <Chats />
           </Route>
           <Route exact path="/">
-            <Navbar />
+            <Navbar user={this.state.user} setUser={this.setUser} />
             <TinderCards />
             <SwipeButtons />
-            <Signup />
+            <Signup user={ this.state.user }/>
           </Route>
           <Route exact path="/settings">
-          <Navbar backButton="/"/> 
+          <Navbar user={this.state.user} setUser={this.setUser} backButton="/"/> 
           <Signup user={this.state.user} setUser={this.setUser} />
           </Route>
         </Switch>
