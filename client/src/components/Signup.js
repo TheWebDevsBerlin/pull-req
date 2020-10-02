@@ -1,51 +1,66 @@
-import React, { Component } from 'react';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import Container from '@material-ui/core/Container';
+import React from 'react';
 import Button from '@material-ui/core/Button';
-
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { logout } from '../services/auth';
 
-class SignUp extends Component {
+export default function FormDialog() {
+  const [open, setOpen] = React.useState(false);
 
-  state= {
-    message: ''
-  }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      { !this.props.user && (
+        <Button href="http://localhost:5555/api/auth/github" variant="outlined" color="primary" className="buttons">
+          <GitHubIcon style={{marginRight: '1rem'}}/>
+          Login / Signup with github
+        </Button>
+      )}
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">SignUp with GitHub!</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You must have a GitHub account to send a pull request...
+          </DialogContentText>
+          <Button href="http://localhost:5555/api/auth/github">
+            <GitHubIcon style={{marginRight: '1rem'}}/>
+            Login / Signup with github
+          </Button>
+           
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+/*
   handleLogoutGithub = e => {
     e.preventDefault();
-    console.log('click');
     if(this.props.user){
       logout();
       this.props.setUser(null);
     };
   }
 
-  componentDidUpdate(nextProps) {
-    (nextProps.user)?console.log('Logged in'):console.log('Logged out!');
-    console.log('update', this.state.message);
-  }
-
-  render() {
-    return (
-      <Container component="main" maxWidth="xs">
-        {
-            !this.props.user ? (
-                <Button
-                  href="http://localhost:5555/api/auth/github">
-                  <GitHubIcon style={{marginRight: '1rem'}}/>
-                  Login with github
-                </Button>): 
-                <Button
-                  component="button"
-                  onClick={this.handleLogoutGithub}>
-                  Logout
-                </Button>
-            }
-      </Container>
-    );
-
-  }
-}
-
-export default SignUp;
+<Button
+  component="button"
+  onClick={this.handleLogoutGithub}>
+  Logout
+</Button>
+*/

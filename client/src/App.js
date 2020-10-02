@@ -35,6 +35,7 @@ class App extends Component {
             <Navbar />
             <TinderCards />
             <SwipeButtons />
+            <Signup />
           </Route>
           <Route exact path="/settings">
           <Navbar backButton="/"/> 
