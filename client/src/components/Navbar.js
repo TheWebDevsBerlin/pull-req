@@ -7,7 +7,7 @@ import TemporaryDrawer from "./Menu";
 import { Link, useHistory } from "react-router-dom";
 
 
-function Navbar({ backButton }) {
+function Navbar({ backButton, user , setUser }) {
   const history = useHistory ();
   return (
     <div className="header">
@@ -17,7 +17,7 @@ function Navbar({ backButton }) {
         </IconButton>
       ) : (
         <IconButton> 
-          <TemporaryDrawer/> 
+          <TemporaryDrawer user={user} setUser={setUser}/> 
         </IconButton>
       )}
       

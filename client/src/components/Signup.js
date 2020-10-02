@@ -7,9 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { logout } from '../services/auth';
-
-export default function FormDialog() {
+export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,7 +20,7 @@ export default function FormDialog() {
 
   return (
     <div>
-      { !this.props.user && (
+      { !props.user && (
         <Button href="http://localhost:5555/api/auth/github" variant="outlined" color="primary" className="buttons">
           <GitHubIcon style={{marginRight: '1rem'}}/>
           Login / Signup with github
