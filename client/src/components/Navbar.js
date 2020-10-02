@@ -22,7 +22,7 @@ function Navbar({ backButton }) {
       )}
       
       <Link to="/">
-        <h1>Pull❣️Request</h1>
+        <h1>Pull<span role="img" aria-label="Heart">❣️</span>Request</h1>
       </Link>
       <Link to="/chat">
         <IconButton>

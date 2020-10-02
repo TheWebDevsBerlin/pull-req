@@ -1,11 +1,13 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { logout } from '../services/auth';
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -20,16 +22,22 @@ export default function FormDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} className="buttons">
-        SignUp with GitHub
-      </Button>
+      { !this.props.user && (
+        <Button href="http://localhost:5555/api/auth/github" variant="outlined" color="primary" className="buttons">
+          <GitHubIcon style={{marginRight: '1rem'}}/>
+          Login / Signup with github
+        </Button>
+      )}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">SignUp with GitHub!</DialogTitle>
         <DialogContent>
           <DialogContentText>
             You must have a GitHub account to send a pull request...
           </DialogContentText>
-          <Button>GITHUB SIGNIN BUTTON GOES HERE</Button>
+          <Button href="http://localhost:5555/api/auth/github">
+            <GitHubIcon style={{marginRight: '1rem'}}/>
+            Login / Signup with github
+          </Button>
            
         </DialogContent>
         <DialogActions>
@@ -41,3 +49,18 @@ export default function FormDialog() {
     </div>
   );
 }
+/*
+  handleLogoutGithub = e => {
+    e.preventDefault();
+    if(this.props.user){
+      logout();
+      this.props.setUser(null);
+    };
+  }
+
+<Button
+  component="button"
+  onClick={this.handleLogoutGithub}>
+  Logout
+</Button>
+*/
