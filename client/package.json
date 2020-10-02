@@ -1,8 +1,8 @@
 {
   "name": "pull-req",
-  "proxy": "http://localhost:5555",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5555",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -14,6 +14,7 @@
     "express-session": "^1.17.1",
     "firebase": "^7.21.1",
     "github": "^14.0.0",
+    "http-proxy-middleware": "^1.0.5",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
@@ -29,6 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+    
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -9,6 +9,15 @@ import Signup from "./components/Signup";
 import "./App.css";
 
 class App extends Component {
+
+  state = {
+    user: this.props.user
+  }
+
+  setUser = user => {
+    this.setState({ user });
+  }
+
   render() {
     return (
       <div className="App">
@@ -29,7 +38,7 @@ class App extends Component {
           </Route>
           <Route exact path="/settings">
           <Navbar backButton="/"/> 
-          <Signup />
+          <Signup user={this.state.user} setUser={this.setUser} />
           </Route>
         </Switch>
       </Router>

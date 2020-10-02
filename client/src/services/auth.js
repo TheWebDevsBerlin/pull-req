@@ -11,6 +11,14 @@ const signup = (username, password) => {
     });
 };
 
+const loginGitHub = () => {
+  console.log('client auth.js')
+  return axios
+    .get('/api/auth/github')
+    // .then(response => response.data)
+    // .catch(err => err);
+};
+
 const login = (username, password) => {
   return axios
     .post('/api/auth/login', { username, password })
@@ -25,12 +33,8 @@ const login = (username, password) => {
 const logout = () => {
   return axios
     .delete('/api/auth/logout')
-    .then(response => {
-      return response.data;
-    })
-    .catch(err => {
-      return err.response.data;
-    });
+    .then(response => response)
+    .catch(err => err);
 };
 
-export { signup, login, logout };
+export { signup, loginGitHub, login, logout };
