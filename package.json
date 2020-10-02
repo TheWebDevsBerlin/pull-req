@@ -8,6 +8,7 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@octokit/rest": "^18.0.6",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "chalk": "^4.1.0",
@@ -25,7 +26,8 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "proxy-addr": "^2.0.6",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "uuidv4": "^6.2.3"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

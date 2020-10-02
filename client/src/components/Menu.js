@@ -45,7 +45,7 @@ export default function TemporaryDrawer(props) {
       logout();
       props.setUser(null);
     };
-  }  
+  }
 
   const list = (anchor) => (
     <div
@@ -80,16 +80,25 @@ export default function TemporaryDrawer(props) {
   );
 
   let anchor = "left";
-  console.log(PersonIcon)
   return (
-    <div>
-
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} style={{borderRadius: "90px"}}><MenuIcon fontSize="large" className="header_icon" /> </Button>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-    </div>
+    <>
+      <React.Fragment key={anchor}>
+        <Button 
+          onClick={toggleDrawer(anchor, true)} 
+          style={{borderRadius: "90px"}}>
+          <MenuIcon 
+            fontSize="large" 
+            className="header_icon" 
+          />
+        </Button>
+        <Drawer 
+          anchor={anchor} 
+          open={state[anchor]} 
+          onClose={toggleDrawer(anchor, false)}
+        >
+          {list(anchor)}
+        </Drawer>
+      </React.Fragment>
+    </>
   );
 }

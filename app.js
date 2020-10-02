@@ -4,12 +4,9 @@ const bodyParser     = require('body-parser');
 const cookieParser   = require('cookie-parser');
 const express        = require('express');
 const favicon        = require('serve-favicon');
-// const hbs            = require('hbs');
 const mongoose       = require('mongoose');
 const logger         = require('morgan');
 const path           = require('path');
-const chalk          = require('chalk');
-// const cors           = require('cors');
 
 mongoose
   .connect('mongodb://localhost/pull-req', {
@@ -35,15 +32,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// set up cors to allow us to accept requests from our client
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000", // allow to server to accept request from different origin
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true // allow session cookie from browser to pass through
-//   })
-// );
 
 // Express View engine setup
 
@@ -80,7 +68,6 @@ require('./configs/passport');
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // default value for title local
 app.locals.title = 'Pull-Req';
