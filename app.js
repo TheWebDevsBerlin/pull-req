@@ -1,47 +1,23 @@
 require('dotenv').config();
 
-const bodyParser   = require('body-parser');
-const cookieParser = require('cookie-parser');
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
-const session = require('express-session');
-const passport = require('passport');
-const MongoStore = require('connect-mongo')(session);
-const GitHubStrategy = require('passport-github').Strategy;
-
-const app = express();
-
-require('./configs/passport');
-
-passport.use(new GitHubStrategy({
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: "http://127.0.0.1:3000/auth/github/callback"
-},
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ githubId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
+const bodyParser     = require('body-parser');
+const cookieParser   = require('cookie-parser');
+const express        = require('express');
+const favicon        = require('serve-favicon');
+// const hbs            = require('hbs');
+const mongoose       = require('mongoose');
+const logger         = require('morgan');
+const path           = require('path');
+const chalk          = require('chalk');
+// const cors           = require('cors');
 
 mongoose
-  .connect('mongodb://localhost/pull-req', {useNewUrlParser: true})
+  .connect('mongodb://localhost/pull-req', {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -52,13 +28,22 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-
+const app = express();
 
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// set up cors to allow us to accept requests from our client
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000", // allow to server to accept request from different origin
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true // allow session cookie from browser to pass through
+//   })
+// );
 
 // Express View engine setup
 
@@ -67,28 +52,43 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-// app.use('/api/auth', require('./routes/auth'));
+// session configuration
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {maxAge: 24*60*60*1000},
+    saveUninitialized: false,
+    resave: false,
+    store: new MongoStore({ 
+      mongooseConnection: mongoose.connection,
+      ttl: 24*60*60*1000
+    })
+  })
+);
+
+const passport = require('passport');
+require('./configs/passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
-
-
+app.locals.title = 'Pull-Req';
 
 const index = require('./routes/index');
 app.use('/', index);
 
 const auth = require('./routes/auth');
-app.use('/api/auth', auth);
-
+app.use('/api/auth/', auth);
 
 module.exports = app;
-
-
