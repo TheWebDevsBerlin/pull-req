@@ -6,6 +6,7 @@ import SwipeButtons from "./components/SwipeButtons";
 import Chats from "./components/Chats";
 import ChatScreen from "./components/ChatScreen";
 import Signup from "./components/Signup";
+import DialogTitle from "./components/LikeMsg";
 import "./App.css";
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
             <TinderCards />
             <SwipeButtons />
             <Signup user={ this.state.user }/>
+            <DialogTitle />
           </Route>
           <Route exact path="/settings">
           <Navbar user={this.state.user} setUser={this.setUser} backButton="/"/> 
