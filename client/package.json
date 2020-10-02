@@ -13,7 +13,6 @@
     "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "express-session": "^1.17.1",
-    "firebase": "^7.21.1",
     "github": "^14.0.0",
     "http-proxy-middleware": "^1.0.5",
     "passport": "^0.4.1",
