@@ -27,7 +27,10 @@ router.post('/signup', (req, res) => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      return User.create({ username: username, password: hash }).then(
+      return User.create({ 
+        username: username, 
+        password: hash 
+      }).then(
         dbUser => {
 
           req.login(dbUser, err => {
@@ -66,8 +69,9 @@ router.post('/login', (req, res) => {
 });
 
 router.delete('/logout', (req, res) => {
-  req.logout();
-  res.json({ message: 'Successful logout' });
+  req.session.destroy(function (err) {
+    res.json({ message: 'Successful logout' });
+  });
 });
 
 // returns the logged in user
@@ -78,15 +82,10 @@ router.get('/loggedin', (req, res) => {
 router.get('/github', passport.authenticate('github'));
 
 router.get('/github/callback', (req,res) => {
-  // passport.authenticate('github', {
-  //   successRedirect: '/github/success',
-  //   failureRedirect: '/github/failed'
-  // })
-
-  console.log('server auth.js');
   passport.authenticate('github', (err, user) => {
     if (err) return res.status(500).json({ message: 'Error while authenticating' });
     if (!user) return res.status(400).json({ message: 'Wrong credentials' });
+
     req.login(user, err => {
       if (err) return res.status(500).json({ message: 'Error while attempting to login' });
       return res.redirect('http://localhost:3000');

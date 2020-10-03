@@ -15,7 +15,7 @@ export default function FormDialog(props) {
   };
 
   return (
-    <div>
+    <>
       { !props.user && (
         <Button href="http://localhost:5555/api/auth/github" variant="outlined" color="primary" className="buttons">
           <GitHubIcon style={{marginRight: '1rem'}}/>
@@ -40,6 +40,6 @@ export default function FormDialog(props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

@@ -56,9 +56,7 @@ export default function LikeMsg(props) {
   
   return (
     <>
-     
-       <FavoriteIcon fontSize="large" variant="outlined" color="primary" onClick={props.handleClickOpen} />
-      
+      <FavoriteIcon fontSize="large" variant="outlined" color="primary" onClick={props.handleClickOpen} />
       <Dialog onClose={props.handleClose} aria-labelledby="customized-dialog-title" open={props.open}>
         <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
           Offer help!

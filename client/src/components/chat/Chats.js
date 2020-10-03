@@ -1,17 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Chats.css";
 import Chat from "./Chat";
 
-function Chats() {
+function Chats(props) {
+  useEffect(() => {
+    props.setBackButton({path: '/', icon: 'back', click: ''})
+  },
+  [props.setBackButton]);
+
   return (
-    <div className="chats">
+    // TODO - Map all chats for this user from DB
+    <>
       <Chat
-       name="Obi"
-       message="Hello there!?"
-       timestamp="50 minutes ago"
-       profilePic="https://i.kinja-img.com/gawker-media/image/upload/t_original/y2kau9wuzwkmj6q3ymn7.png"
-        />
-    </div>
+        className="chats"
+        name={props.user.name}
+        message="Hello there!?"
+        timestamp="50 minutes ago"
+        profilePic={props.user.image}
+      />
+    </>
   );
 }
 

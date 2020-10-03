@@ -12,11 +12,10 @@ const signup = (username, password) => {
 };
 
 const loginGitHub = () => {
-  console.log('client auth.js')
-  return axios
-    .get('/api/auth/github')
-    // .then(response => response.data)
-    // .catch(err => err);
+  console.log('client auth.js');
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "http://localhost:5555/api/auth/github", true);
+  xhttp.send();
 };
 
 const login = (username, password) => {

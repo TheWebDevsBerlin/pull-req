@@ -1,9 +1,13 @@
 .buttons {
     position: fixed;
-    bottom: 10vh;
+    bottom: 0;
     width: 100%;
+    max-width: calc(1024px - 4rem);
+    height: 4rem;
+    padding: 1rem 0;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .buttons .MuiIconButton-root {
@@ -12,26 +16,26 @@
 }
 
 .buttons_repeat {
-    padding: 3vw !important;
+    padding: 1rem !important;
     color: #f5b748 !important;
 }
 
 .buttons_close {
-    padding: 3vw !important;
+    padding: 1rem !important;
     color: #ec5c6f !important;
 }
 
 .buttons_github {
-    padding: 3vw !important;
+    padding: 1rem !important;
     color: #232a2e !important;
 }
 
 .buttons_fav {
-    padding: 3vw !important;
+    padding: 1rem !important;
     color: #6ecfa5 !important;
 }
 
 .buttons_flash {
-    padding: 3vw !important;
+    padding: 1rem !important;
     color: #634790 !important;
 }
