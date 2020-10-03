@@ -16,24 +16,23 @@ const SwiptButtons = () => {
     const handleClose = () => {
       setOpen(false);
     };
-  
 
     return (
-        <div className="buttons">
+      <div className="buttons">
         <IconButton className="buttons_close">
-            <CloseIcon fontSize="large" />
+          <CloseIcon fontSize="large" />
         </IconButton>
         <IconButton className="buttons_github">
-            <GitHubIcon fontSize="large" />
+          <GitHubIcon fontSize="large" />
         </IconButton>
         <IconButton className="buttons_fav">
-            <LikeMsg fontSize="large" 
-                handleClickOpen={handleClickOpen}
-                handleClose={handleClose}
-                open={open}
-            />
+          <LikeMsg fontSize="large" 
+            handleClickOpen={handleClickOpen}
+            handleClose={handleClose}
+            open={open}
+          />
         </IconButton>
-        </div>
+      </div>
     );
 };
 

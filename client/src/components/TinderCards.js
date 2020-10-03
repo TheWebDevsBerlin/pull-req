@@ -21,22 +21,20 @@ class TinderCards extends Component {
             status: null
           }
         }), ...this.state.labels];
-
-
-        this.setState({ labels});
+        this.setState(state => ({ labels, page: ++state.page }));
       })
       .catch(err=>this.setState({message: `Error fetching labels. \n ${err}`}));
   }
 
   componentDidMount() {
     this.loadNextPage();
+    this.props.setBackButton('')
   }
 
   componentDidUpdate(prevProps, prevState) {
     if(prevState.labels !== this.state.labels){
       if(this.state.labels.length <= 2) {
         console.log('loading some more...')
-        this.setState(state => ({page: ++state.page}));
         this.loadNextPage();
       }
     }
@@ -49,7 +47,7 @@ class TinderCards extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.state.message && <h2>{this.state.message}</h2>}
         <div className="cards__cardcontainer">
           {this.state.labels.map((label) => (
@@ -69,7 +67,7 @@ class TinderCards extends Component {
             </TinderCard>
           ))}
         </div>
-      </div>
+      </>
     );
   }
 }

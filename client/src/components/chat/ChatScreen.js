@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ChatScreen.css";
 import Avatar from "@material-ui/core/Avatar";
 
-function ChatScreen() {
-const [input, setInput] = useState('');
+function ChatScreen(props) {
+  const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
     {
-      name: "Obi",
-      image:
-        "https://i.kinja-img.com/gawker-media/image/upload/t_original/y2kau9wuzwkmj6q3ymn7.png",
+      name: props.user.name,
+      image: props.user.image,
+        // "https://i.kinja-img.com/gawker-media/image/upload/t_original/y2kau9wuzwkmj6q3ymn7.png",
       message: "Hello there 🤭",
     },
     {
@@ -21,9 +21,12 @@ const [input, setInput] = useState('');
 
     setMessages([...messages, {message: input}]);
     setInput('');
-}
+  }
 
-
+  useEffect(() => {
+    props.setBackButton({path: '/chat', icon: 'back'})
+  },[props.setBackButton]);
+  
   return (
     <div className="chatScreen">
       <p className="chat_timestamp">YOU MATCHED WITH OBI ON 17/8/2020</p>
@@ -42,19 +45,18 @@ const [input, setInput] = useState('');
             <p className="chat_textUser">{message.message}</p>
           </div>
         )
-      )};
+      )}
 
-      
-        <form className="chat_input">
-          <input 
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          type="text"
-          placeholder="Type something"
-          className="message_input"/>
-          <button  onClick={handleSend} className="inputBtn">SEND</button>
-        </form>
-      </div>
+      <form className="chat_input">
+        <input 
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        type="text"
+        placeholder="Type something"
+        className="message_input"/>
+        <button  onClick={handleSend} className="inputBtn">SEND</button>
+      </form>
+    </div>
   );
 }
 
