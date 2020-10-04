@@ -1,32 +1,69 @@
+/* 
 .card {
-    position: relative;
-    width: 95vw;
+  position: relative;
+  padding: 1rem;
+  max-width: calc(1024px - 4rem);
+  height: 40vh;
+  background-color: white;
+  border-radius:10px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  }
+
+  */ .card {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
-    max-width: calc(1024px - 4rem);
-    height: 70vh;
+    flex: 1 1;
+    max-height: 23rem;
+    height: 75vw;
+    margin: 1rem;
     background-color: white;
-    border-radius:10px;
+    border-radius: 10px;
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
-}
+  }
 
 .swipe:first-of-type {
-    box-shadow: 0 1rem 2rem 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1rem 2rem 0px rgba(0, 0, 0, 0.3);
 }
 
 .cards__cardcontainer {
-    display:flex;
-    justify-content: center;
-    margin: 1rem;
-    height: calc(100vh - 12rem - 2px);
+  display:flex;
+  justify-content: center;
+  margin: 1rem;
+  height: calc(100vh - 12rem - 2px);
+}
+
+.card>h2 {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  margin: -1rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  color: white;
+  overflow: hidden;
+  z-index: 0;
 }
 
 .card > h3 {
-    position:absolute;
-    color: white;
-    bottom: 10px;
+  position:absolute;
+  max-width: 40rem;
+  color: white;
+  bottom: 10px;
 }
 
 .swipe {
-    position: absolute;
+  position: absolute;
+  width: 90vw;
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: white;
+  height: calc(100vh - 12rem - 2px);
+  overflow: hidden;
+  }
+
+  .swipe p {
+    padding: 1rem;
 }
