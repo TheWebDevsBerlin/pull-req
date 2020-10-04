@@ -3,6 +3,9 @@ import TinderCard from "react-tinder-card";
 import axios from 'axios';
 import "./TinderCards.css";
 
+import { Icon, InlineIcon } from '@iconify/react';
+import gitPullRequest from '@iconify/icons-octicon/git-pull-request';
+
 class TinderCards extends Component {
   constructor(props){
     super();
@@ -13,14 +16,10 @@ class TinderCards extends Component {
   }
 
   loadNextPage = () => {
-    axios.get(`/api/labels/help-wanted/3/${this.state.page}`)
+    const q = 'help-wanted'
+    axios.get(`/api/labels/${q}/3/${this.state.page}`)
       .then(response => {
-        const labels = [...response.data.data.map(label => {
-          return {
-            ...label,
-            status: null
-          }
-        }), ...this.state.labels];
+        const labels = [...response.data.data, ...this.state.labels];
         this.setState(state => ({ labels, page: ++state.page }));
       })
       .catch(err=>this.setState({message: `Error fetching labels. \n ${err}`}));
@@ -59,11 +58,16 @@ class TinderCards extends Component {
             >
               <div
                 style={{ backgroundImage: `url(${label.image})` }}
-                className="card"
-              >
-                <h3>{label.title}</h3>
-                {/* <p>{label.description}</p> */}
+                className="card">
+                <h2>
+                  <span><Icon icon={ gitPullRequest } /> </span>
+                  <span>{ label.repo_id.repo.toString() }</span>
+                </h2>
+                <p>Last updated on { label.updated_at }</p>
               </div>
+              <p>{ label.repo_id.owner }</p>
+              <p>{ label.repo.about }</p>
+              <p>{ label.description } style={ 'visibility: hidden' }</p>
             </TinderCard>
           ))}
         </div>
