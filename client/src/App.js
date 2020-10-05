@@ -42,6 +42,7 @@ class App extends Component {
   render() {
     return (
       <Router className="App">
+      
         <Navbar 
           user={this.state.user} 
           setUser={this.setUser} 
@@ -58,13 +59,20 @@ class App extends Component {
         /> 
         <Switch>
           <Route exact path="/chat/:person">
-            <ChatScreen user={this.state.user} setBackButton={this.setBackButton} />
+            <ChatScreen 
+              user={this.state.user} 
+              to={this.state.to}
+              setBackButton={this.setBackButton} />
           </Route>
           <Route exact path="/chat">
-            <Chats user={this.state.user} setBackButton={this.setBackButton} />
+            <Chats 
+              user={this.state.user} 
+              setBackButton={this.setBackButton} />
           </Route>
           <Route exact path="/">
-            <TinderCards user={this.state.user} setBackButton={this.setBackButton} />
+            <TinderCards 
+              user={this.state.user} 
+              setBackButton={this.setBackButton} />
           </Route>
         </Switch>
         <Signup user={ this.state.user }/>

@@ -40,7 +40,7 @@ function Navbar({ backButton, user , setUser, menuIsOpen, setMenuIsOpen }) {
       )}
       
       <Link to="/">
-        <h1>Pull<span role="img" aria-label="Heart">❣️</span>Request</h1>
+        <h1><img src="./images/PullReq.svg" alt="PullReqLogo"  width="60rem" /></h1>
       </Link>
       <Link to="/chat">
         <IconButton>

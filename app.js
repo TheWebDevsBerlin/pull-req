@@ -78,4 +78,7 @@ app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/api/auth/', auth);
 
+const chat = require('./routes/chat');
+app.use('/api/chat/', chat);
+
 module.exports = app;
