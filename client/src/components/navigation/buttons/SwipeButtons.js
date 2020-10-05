@@ -2,38 +2,62 @@ import React from 'react';
 import './SwipeButtons.css';
 import CloseIcon from "@material-ui/icons/Close";
 import GitHubIcon from '@material-ui/icons/GitHub';
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton  from '@material-ui/core/IconButton';
-import LikeMsg from './LikeBtn';
+import SendMessageDialog from './SendMessageDialog';
+// import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
 
+const SwiptButtons = (props) => {
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState('');
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-const SwiptButtons = () => {
-    const [open, setOpen] = React.useState(false);
+  const handleSend = () => {
+    console.log('sending message (todo)', message);
+    console.log(props.currentLabel)
+    // octokit.issues.createComment({
+    //   owner,
+    //   repo,
+    //   issue_number,
+    //   body,
+    // });
+    setOpen(false);
+  };
 
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-    return (
-      <div className="buttons">
-        <IconButton className="buttons_close">
-          <CloseIcon fontSize="large" />
-        </IconButton>
-        <IconButton className="buttons_github">
-          <GitHubIcon fontSize="large" />
-        </IconButton>
-        <IconButton className="buttons_fav">
-          <LikeMsg fontSize="large" 
-            handleClickOpen={handleClickOpen}
-            handleClose={handleClose}
-            open={open}
-          />
-        </IconButton>
-      </div>
-    );
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value)
+  }
+
+  return (
+    <div className="buttons">
+      <IconButton
+        onClick={ () => props.handleCardLeftScreen(props.label._id) }
+        className="buttons_close">
+        <CloseIcon fontSize="large" />
+      </IconButton>
+      <IconButton className="buttons_github">
+        <GitHubIcon fontSize="large" />
+      </IconButton>
+      <IconButton className="buttons_fav">
+        <FavoriteIcon fontSize="large" variant="outlined" color="primary" onClick={ handleClickOpen } />
+      </IconButton>
+      <SendMessageDialog
+        handleClose={ handleClose }
+        handleSend={ handleSend }
+        message={ message }
+        handleMessageChange={ handleMessageChange }
+        open={ open }
+      />
+
+    </div>
+  );
 };
 
 export default SwiptButtons

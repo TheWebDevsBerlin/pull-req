@@ -9,7 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const styles = (theme) => ({
   root: {
@@ -21,19 +22,19 @@ const styles = (theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
-  },
+  }
 });
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+    <MuiDialogTitle disableTypography className={ classes.root } { ...other }>
+      <Typography variant="h6">{ children }</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton aria-label="close" className={ classes.closeButton } onClick={ onClose }>
           <CloseIcon />
         </IconButton>
-      ) : null}
+      ) : null }
     </MuiDialogTitle>
   );
 });
@@ -41,7 +42,7 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
-  },
+  }
 }))(MuiDialogContent);
 
 const DialogActions = withStyles((theme) => ({
@@ -52,27 +53,47 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 export default function LikeMsg(props) {
- 
-  
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <>
-      <FavoriteIcon fontSize="large" variant="outlined" color="primary" onClick={props.handleClickOpen} />
-      <Dialog onClose={props.handleClose} aria-labelledby="customized-dialog-title" open={props.open}>
-        <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
+      <Dialog
+        onClose={ props.handleClose }
+        fullScreen={ fullScreen }
+        aria-labelledby="customized-dialog-title"
+        open={ props.open }>
+        <DialogTitle id="customized-dialog-title" onClose={ props.handleClose }>
           Offer help!
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             Your message will be delievered as a comment to the GitHub respository.
           </Typography>
-          <TextareaAutosize aria-label="empty textarea" placeholder="Why is your code so bad?" rows="5" cols="60" />
+          <TextareaAutosize
+            value={ props.message }
+            onChange={ props.handleMessageChange }
+            aria-label="empty textarea"
+            placeholder="Why is your code so bad?"
+            style={ {
+              margin: '0',
+              padding: '1rem 0 0 0',
+              width: '100%',
+              border: 'none',
+              outlineStyle: 'dotted',
+              outlineColor: 'lightgray',
+              borderTop: '3px dotted gray',
+              minHeight: '5rem'
+            } }
+          />
         </DialogContent>
-        
+
         <DialogActions>
-          <Button autoFocus onClick={props.handleClose} color="primary">
+          <Button autoFocus onClick={ props.handleSend } color="primary">
             Pull request
           </Button>
-          <Button autoFocus onClick={props.handleClose} color="primary">
+          <Button autoFocus onClick={ props.handleClose } color="primary">
             Cancel
           </Button>
         </DialogActions>

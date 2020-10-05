@@ -51,7 +51,6 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ githubId: profile.id })
         .then(found => {
-          console.log('passport.js')
           if(found !== null) {
             done(null, found);
           } else {

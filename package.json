@@ -7,7 +7,9 @@
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "server": "DEBUG=pull-req:* nodemon ./bin/www",
     "client": "cd client && npm start",
-    "dev-windows": "nodemon ./bin/www"
+    "build": "cd client && react-scripts build",
+    "dev-windows": "nodemon ./bin/www",
+    "heroku-pre-build": ""
   },
   "dependencies": {
     "@octokit/rest": "^18.0.6",
