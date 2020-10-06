@@ -2,18 +2,19 @@ import React from 'react';
 import './SwipeButtons.css';
 import CloseIcon from "@material-ui/icons/Close";
 import GitHubIcon from '@material-ui/icons/GitHub';
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton  from '@material-ui/core/IconButton';
 import SendMessageDialog from './SendMessageDialog';
+import Logo from './../../../images/PullReqLogo.svg';
+
 // import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
 
 const SwiptButtons = (props) => {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleSend = () => {
     console.log('sending message (todo)', message);
@@ -46,7 +47,7 @@ const SwiptButtons = (props) => {
         <GitHubIcon fontSize="large" />
       </IconButton>
       <IconButton className="buttons_fav">
-        <FavoriteIcon fontSize="large" variant="outlined" color="primary" onClick={ handleClickOpen } />
+        <img src={ Logo } alt="PullReqLogo" width="40rem" onClick={ props.handleClickOpen } />
       </IconButton>
       <SendMessageDialog
         handleClose={ handleClose }

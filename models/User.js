@@ -3,10 +3,16 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    githubId: String,
     username: String,
-    password: String,
-    githubId: String
-
+    login: String,
+    avatar_url: String,
+    html_url: String,
+    displayName: String,
+    company: String,
+    blog: String,
+    location: String,
+    created_at: Date,
   },
   {
     timestamps: true

@@ -1,15 +1,17 @@
 require('dotenv').config();
 
-const bodyParser     = require('body-parser');
-const cookieParser   = require('cookie-parser');
-const express        = require('express');
-const favicon        = require('serve-favicon');
-const mongoose       = require('mongoose');
-const logger         = require('morgan');
-const path           = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const favicon = require('serve-favicon');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+
+const conn_str = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.2pv18.mongodb.net/pull-req?retryWrites=true&w=majority`;
 
 mongoose
-  .connect('mongodb://localhost/pull-req', {
+  .connect(conn_str, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
@@ -36,7 +38,7 @@ app.use(cookieParser());
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
+  src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
@@ -53,12 +55,12 @@ const MongoStore = require('connect-mongo')(session);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie: {maxAge: 24*60*60*1000},
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
     saveUninitialized: false,
     resave: false,
-    store: new MongoStore({ 
+    store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      ttl: 24*60*60*1000
+      ttl: 24 * 60 * 60 * 1000
     })
   })
 );
@@ -78,8 +80,11 @@ app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/api/auth/', auth);
 
-app.use((req, res) => {
-  res.sendFile(__dirname + "/client/build/index.html");
-});
+const chat = require('./routes/chat');
+app.use('/api/chat/', chat);
+
+// app.use((req, res) => {
+//   res.sendFile(__dirname + "/client/build/index.html");
+// });
 
 module.exports = app;

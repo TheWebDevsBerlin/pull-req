@@ -1,24 +1,19 @@
-import React, {useEffect} from "react";
+import React from "react";
 import "./Chats.css";
 import Chat from "./Chat";
 
 function Chats(props) {
-  useEffect(() => {
-    props.setBackButton({path: '/', icon: 'back', click: ''})
-  },
-  [props.setBackButton]);
-
+  console.log('USERS', props.connectedUsers)
   return (
-    // TODO - Map all chats for this user from DB
-    <>
-      <Chat
+    props.connectedUsers.map(contact => (
+      <Chat 
         className="chats"
-        name={props.user.name}
-        message="Hello there!?"
+        name={ props.user.login }
+        message={ `Hello ${contact}!?` }
         timestamp="50 minutes ago"
-        profilePic={props.user.image}
+        profilePic={ props.user.avatar_url }
       />
-    </>
+    ))
   );
 }
 

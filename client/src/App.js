@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Navbar from "./components/navigation/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import TinderCards from "./components/TinderCards"
 import SwipeButtons from "./components/navigation/buttons/SwipeButtons";
 import Chats from "./components/chat/Chats";
@@ -15,7 +15,9 @@ class App extends Component {
 
   state = {
     user: this.props.user,
-    backButton: {path: '/', icon: 'menu', click: ''},
+    connectedUsers: [],
+    partner: '5f7c0c467253abca7b9d706c',
+    backButton: { path: '/', icon: 'menu', click: '' },
     menuIsOpen: false,
     // cards logic:
     labels: [],
@@ -44,8 +46,14 @@ class App extends Component {
     this.setState({ user });
   }
 
+  isConnected = user => {
+    console.log('FROM MAIN APP:', user);
+    const name = user.split(" ")[0]
+    this.setState({ connectedUsers: this.state.connectedUsers.concat(name) })
+  }
+
   setBackButton = (info) => {
-    const {path, icon, click} = info;
+    const { path, icon, click } = info;
     const backButton = {
       path: path || '',
       icon: icon || 'menu',
@@ -55,35 +63,47 @@ class App extends Component {
   }
 
   handleMenuIsOpen = () => {
-    this.setState(prevState => ({menuIsOpen: !prevState.menuIsOpen}))
+    this.setState(prevState => ({ menuIsOpen: !prevState.menuIsOpen }))
   }
 
   handleCloseMenu = () => {
-    this.setState(prevState => ({menuIsOpen: false}))
+    this.setState(prevState => ({ menuIsOpen: false }))
   }
 
   render() {
     return (
       <Router className="App">
         <Navbar
-          user={this.state.user} 
-          setUser={this.setUser} 
-          backButton={this.state.backButton}
-          menuIsOpen={this.state.menuIsOpen}
-          setMenuIsOpen={this.handleMenuIsOpen}
+          user={ this.state.user }
+          setUser={ this.setUser }
+          backButton={ this.state.backButton }
+          menuIsOpen={ this.state.menuIsOpen }
+          setMenuIsOpen={ this.handleMenuIsOpen }
           closeMenu={ this.handleCloseMenu } />
-        <SideMenu 
-          user={this.state.user} 
-          setUser={this.setUser} 
-          menuIsOpen={this.state.menuIsOpen} 
-          closeMenu={this.handleCloseMenu}
-        /> 
+        <SideMenu
+          user={ this.state.user }
+          setUser={ this.setUser }
+          menuIsOpen={ this.state.menuIsOpen }
+          closeMenu={ this.handleCloseMenu }
+        />
         <Switch>
           <Route exact path="/chat/:person">
-            <ChatScreen user={this.state.user} setBackButton={this.setBackButton} />
+            { this.state.user ? (
+              <ChatScreen
+                user={ this.state.user }
+                isConnected={ this.isConnected }
+                to={ this.state.partner }
+                setBackButton={ this.setBackButton } />) :
+              (<Redirect to='/' />) }
           </Route>
           <Route exact path="/chat">
-            <Chats user={this.state.user} setBackButton={this.setBackButton} />
+            { this.state.user ? (
+              <Chats
+                user={ this.state.user }
+                connectedUsers={ this.state.connectedUsers }
+                setBackButton={ this.setBackButton } />) :
+              (<Redirect to='/' />)
+            }
           </Route>
           <Route exact path="/">
             <TinderCards
@@ -97,7 +117,10 @@ class App extends Component {
           </Route>
         </Switch>
         {this.state.user ?
-          (<SwipeButtons label={ this.state.currentLabel } handleCardLeftScreen={ this.handleCardLeftScreen } currentLabel={ this.state.currentLabel } />) :
+          (<SwipeButtons
+            label={ this.state.currentLabel }
+            handleCardLeftScreen={ this.handleCardLeftScreen }
+            currentLabel={ this.state.currentLabel } />) :
           (<Signup user={ this.state.user } />)
         }
       </Router>

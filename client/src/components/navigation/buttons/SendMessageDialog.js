@@ -65,6 +65,7 @@ export default function LikeMsg(props) {
         aria-labelledby="customized-dialog-title"
         open={ props.open }>
         <DialogTitle id="customized-dialog-title" onClose={ props.handleClose }>
+
           Offer help!
         </DialogTitle>
         <DialogContent dividers>

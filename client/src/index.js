@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import axios from 'axios';
 
+
 axios.get('/api/auth/loggedin')
   .then(response => {
     const user = response.data;
@@ -15,6 +16,3 @@ axios.get('/api/auth/loggedin')
       document.getElementById('root')
     );
   });
-
-
-
