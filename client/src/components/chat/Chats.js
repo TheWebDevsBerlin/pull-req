@@ -1,5 +1,4 @@
 import React from "react";
-import "./Chats.css";
 import Chat from "./Chat";
 import axios from 'axios';
 

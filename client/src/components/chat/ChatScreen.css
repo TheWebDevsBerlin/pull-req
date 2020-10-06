@@ -32,7 +32,7 @@
     padding: 0.25rem;
     position: fixed;
     bottom: 6rem;
-    width:100%;
+    width: 500px;
     border-top:1px solid lightgray;
     border-bottom:1px solid lightgray;
 
@@ -46,8 +46,15 @@
 
 .inputBtn {
     border: none;
+    width: 20%;
     margin-right: 20px;
     background: white;
     font-weight: bolder;
     color: #fe3d71
 }
+
+li {
+    list-style-type: none;
+    padding: 5px;
+}
+

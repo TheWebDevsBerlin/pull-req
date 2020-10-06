@@ -1,13 +1,12 @@
 import React from "react";
 import "./ChatScreen.css";
 import { Redirect } from "react-router-dom";
-
 // import Avatar from "@material-ui/core/Avatar";
 import MessagePost from './MessagePost';
 import ChatForm from './ChatForm';
 import axios from 'axios'
-
 import socketIOClient from "socket.io-client";
+
 let socket;
 
 class ChatScreen extends React.Component {
@@ -87,15 +86,10 @@ class ChatScreen extends React.Component {
     const c = "#ffcccc"
 
     return (
-      <div className="chat-area" style={{ "backgroundColor": `${c}` }}>
-        <div className="chat-history">
-          History
-          <ul>
+      <div className="chat-area">
             { messageHistory }
-          </ul>
-        </div>
-        <p className="action-feedback">{actionFeedback}</p>
-        <p className='system'>{systemFeedback}</p>
+            { actionFeedback }
+            { systemFeedback }
         <ChatForm
           postMessage={ this.postMessage }
           user={ this.props.user }

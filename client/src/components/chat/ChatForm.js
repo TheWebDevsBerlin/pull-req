@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from "react-router-dom";
+import "./ChatScreen.css";
 
 export default class ChatForm extends Component {
   state = {
@@ -26,12 +27,16 @@ export default class ChatForm extends Component {
     if (!this.props.user) return (<Redirect to='/' />)
 
     return (
-      <div>
-        <form className="chat-form" onSubmit={this.handleSubmit}>
-          <div className="contact-head" style={{ "backgroundImage": `url(${this.state.user.picture})` }}></div>
-          <input type="text" name="message" placeholder="Type your message here..." value={this.state.message} onChange={this.handleChange} />
+      
+        <form className="chat_input" onSubmit={this.handleSubmit}>
+          <input className="message_input" 
+          type="text" name="message" 
+          placeholder="Type your message here..." 
+          value={this.state.message} 
+          onChange={this.handleChange} />
+          <button className="inputBtn">Send</button>
+          
         </form>
-      </div>
     )
   }
 }
