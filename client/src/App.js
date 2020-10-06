@@ -16,7 +16,7 @@ class App extends Component {
   state = {
     user: this.props.user,
     connectedUsers: [],
-    partner: '5f7c0c467253abca7b9d706c',
+    partner: '5f7b77f69e70a80cfd417814',
     backButton: { path: '/', icon: 'menu', click: '' },
     menuIsOpen: false,
     // cards logic:

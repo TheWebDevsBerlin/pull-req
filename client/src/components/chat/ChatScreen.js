@@ -1,13 +1,12 @@
 import React from "react";
 import "./ChatScreen.css";
 import { Redirect } from "react-router-dom";
-
 // import Avatar from "@material-ui/core/Avatar";
 import MessagePost from './MessagePost';
 import ChatForm from './ChatForm';
 import axios from 'axios'
-
 import socketIOClient from "socket.io-client";
+
 let socket;
 
 class ChatScreen extends React.Component {
@@ -76,7 +75,7 @@ class ChatScreen extends React.Component {
 
     const messageHistory = this.state.messageHistory.map(x => {
       console.log({ x })
-      return <li key={ x._id }> <MessagePost user={ this.props.user._id } by={ x.by } to={ this.state.to } content={ x } /></li>
+      return <li key={ x._id }> <MessagePost user={ this.props.user._id } by={ x.by } to={ x.to } content={ x } /></li>
     })
 
     const { actionFeedback } = this.state;
@@ -87,15 +86,10 @@ class ChatScreen extends React.Component {
     const c = "#ffcccc"
 
     return (
-      <div className="chat-area" style={{ "backgroundColor": `${c}` }}>
-        <div className="chat-history">
-          History
-          <ul>
+      <div className="chat-area">
             { messageHistory }
-          </ul>
-        </div>
-        <p className="action-feedback">{actionFeedback}</p>
-        <p className='system'>{systemFeedback}</p>
+            { actionFeedback }
+            { systemFeedback }
         <ChatForm
           postMessage={ this.postMessage }
           user={ this.props.user }
