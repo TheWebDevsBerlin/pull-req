@@ -52,25 +52,26 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function LikeMsg(props) {
+export default function SendMessageDialog(props) {
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+console.log(props)
   return (
-    <>
+   
       <Dialog
         onClose={ props.handleClose }
         fullScreen={ fullScreen }
         aria-labelledby="customized-dialog-title"
         open={ props.open }>
         <DialogTitle id="customized-dialog-title" onClose={ props.handleClose }>
-
-          Offer help!
+          <h3>Send a pull request!</h3>
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Your message will be delievered as a comment to the GitHub respository.
+            <p>
+              Your message will be sent to the repo owner on GitHub
+            </p>
           </Typography>
           <TextareaAutosize
             value={ props.message }
@@ -99,6 +100,6 @@ export default function LikeMsg(props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    
   );
 }

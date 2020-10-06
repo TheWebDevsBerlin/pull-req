@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TinderCard from "react-tinder-card";
 import "./TinderCards.css";
-
 import { Icon } from '@iconify/react';
 import gitPullRequest from '@iconify/icons-octicon/git-pull-request';
 import Chip from '@material-ui/core/Chip';

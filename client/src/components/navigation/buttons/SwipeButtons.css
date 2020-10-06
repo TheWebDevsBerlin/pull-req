@@ -12,7 +12,7 @@
 
 .buttons .MuiIconButton-root {
     background-color: white;
-    box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5);
 }
 
 .buttons_repeat {
@@ -30,7 +30,7 @@
     color: #232a2e !important;
 }
 
-.buttons_fav {
+.buttons_pull {
     padding: 1rem !important;
     color: #6ecfa5 !important;
 }
