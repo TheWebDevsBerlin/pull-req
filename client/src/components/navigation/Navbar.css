@@ -1,17 +1,7 @@
 .header {
-  margin-top: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 0.1rem solid #f9f9f9;
   height: calc(4rem - 2px);
-}
-
-.header h1 {
-  font-size: 3.25vh;
-}
-
-.header_icon {
-  padding: 20px;
-  color: #757575;
 }

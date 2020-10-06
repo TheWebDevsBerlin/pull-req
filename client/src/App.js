@@ -15,8 +15,8 @@ class App extends Component {
 
   state = {
     user: this.props.user,
+    to: '',
     connectedUsers: [],
-    partner: null,
     backButton: { path: '/', icon: 'menu', click: '' },
     menuIsOpen: false,
     // cards logic:
@@ -46,8 +46,11 @@ class App extends Component {
     this.setState({ user });
   }
 
+  updateTo = user => {
+    this.setState({ partner: user })
+  }
+
   isConnected = user => {
-    console.log('FROM MAIN APP:', user);
     const name = user.split(" ")[0]
     this.setState({ connectedUsers: this.state.connectedUsers.concat(name) })
   }
@@ -68,6 +71,10 @@ class App extends Component {
 
   handleCloseMenu = () => {
     this.setState(prevState => ({ menuIsOpen: false }))
+  }
+
+  updateToField = (id) => {
+    this.setState({ to: id })
   }
 
   render() {
@@ -91,8 +98,8 @@ class App extends Component {
             { this.state.user ? (
               <ChatScreen
                 user={ this.state.user }
+                to={ this.state.to }
                 isConnected={ this.isConnected }
-                to={ this.state.partner }
                 setBackButton={ this.setBackButton } />) :
               (<Redirect to='/' />) }
           </Route>
@@ -100,6 +107,7 @@ class App extends Component {
             { this.state.user ? (
               <Chats
                 user={ this.state.user }
+                updateToField={ this.updateToField }
                 connectedUsers={ this.state.connectedUsers }
                 setBackButton={ this.setBackButton } />) :
               (<Redirect to='/' />)
@@ -114,15 +122,15 @@ class App extends Component {
               handleCardLeftScreen={ this.handleCardLeftScreen }
               setBackButton={ this.setBackButton }
             />
+            { this.state.user ?
+              (<SwipeButtons
+                label={ this.state.labels[this.state.labels.length - 1] }
+                handleCardLeftScreen={ this.handleCardLeftScreen }
+              />) :
+              (<Signup user={ this.state.user } />)
+            }
           </Route>
         </Switch>
-        {this.state.user ?
-          (<SwipeButtons
-            label={ this.state.labels[this.state.labels.length - 1]} 
-            handleCardLeftScreen={ this.handleCardLeftScreen }
-             />) :
-          (<Signup user={ this.state.user } />)
-        }
       </Router>
     )
   }

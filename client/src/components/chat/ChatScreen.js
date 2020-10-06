@@ -1,7 +1,6 @@
 import React from "react";
 import "./ChatScreen.css";
 import { Redirect } from "react-router-dom";
-// import Avatar from "@material-ui/core/Avatar";
 import MessagePost from './MessagePost';
 import ChatForm from './ChatForm';
 import axios from 'axios'
@@ -22,9 +21,11 @@ class ChatScreen extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get('/api/chat/messages').then(response => {
-      console.log({ response });
-      this.setState({ messageHistory: response.data })
+    this.props.setBackButton({ path: '/chat', icon: 'back', click: '' })
+    axios.get(`/api/chat/messages/${this.state.by}/${this.state.to}`).then(response => {
+      this.setState({
+        messageHistory: response.data
+      })
     }).catch(err => console.log(err))
 
     // ### Socket Client ####
@@ -34,15 +35,14 @@ class ChatScreen extends React.Component {
 
     socket.on("message", data => {
       const { type, message } = data
-      console.log(data);
       if (type === 'message') {
         this.setState({ response: message })
-        axios.get('/api/chat/messages').then(response => {
-          this.setState({ messageHistory: response.data })
+        axios.get(`/api/chat/messages/${this.state.by}/${this.state.to}`).then(response => {
+          if (response) this.setState({ messageHistory: response.data })
         })
-      }
-      else if (type === 'typing') this.setState({ actionFeedback: message })
-      else if (type === 'system') {
+      } else if (type === 'typing') {
+        this.setState({ actionFeedback: message });
+      } else if (type === 'system') {
         this.setState({ systemFeedback: message });
         this.props.isConnected(message)
       }
@@ -62,9 +62,8 @@ class ChatScreen extends React.Component {
       by: this.state.by,
       message: message
     }).then(() => {
-      console.log({ sendMessage: this.state.to })
-      socket.send({ type: 'message', message: message })
-      socket.send({ type: 'typing', message: null })
+      socket.send({ type: 'message', message: message });
+      socket.send({ type: 'typing', message: null });
     }).catch(err => console.log(err))
     this.setState({
       message: ""
@@ -83,17 +82,16 @@ class ChatScreen extends React.Component {
     systemFeedback.length && setTimeout(() => {
       this.setState({ systemFeedback: "" })
     }, 2000)
-    const c = "#ffcccc"
 
     return (
       <div className="chat-area">
-            <div>
-               { messageHistory }
-            </div> 
-            <div>
-              { actionFeedback }
-              { systemFeedback }
-            </div>
+        <div>
+          { messageHistory }
+        </div>
+        <div>
+          { actionFeedback }
+          { systemFeedback }
+        </div>
         <ChatForm
           postMessage={ this.postMessage }
           user={ this.props.user }
@@ -105,63 +103,3 @@ class ChatScreen extends React.Component {
 
 }
 export default ChatScreen;
-
-
-//   const [input, setInput] = useState('');
-//   const [messages, setMessages] = useState([
-//     {
-//       name: props.user.name,
-//       image: props.user.image,
-//         // "https://i.kinja-img.com/gawker-media/image/upload/t_original/y2kau9wuzwkmj6q3ymn7.png",
-//       message: "Hello there 🤭",
-//     },
-//     {
-//       message: "ahh Codobi, you are a bold one",
-//     },
-//   ]);
-
-//   const handleSend = e => {
-//     e.preventDefault();
-
-//     setMessages([...messages, {message: input}]);
-//     setInput('');
-//   }
-
-//   useEffect(() => {
-//     props.setBackButton({path: '/chat', icon: 'back'})
-//   },[props.setBackButton]);
-  
-//   return (
-//     <div className="chatScreen">
-//       <p className="chat_timestamp">YOU MATCHED WITH OBI ON 17/8/2020</p>
-//       {messages.map((message) =>
-//         message.name ? (
-//           <div className="chatMessage">
-//             <Avatar
-//               className="chatMessage_image"
-//               alt={message.name}
-//               src={message.image}
-//             />
-//             <p className="chat_text">{message.message}</p>
-//           </div>
-//         ) : (
-//           <div className="chatMessage">
-//             <p className="chat_textUser">{message.message}</p>
-//           </div>
-//         )
-//       )}
-
-//       <form className="chat_input">
-//         <input 
-//         value={input}
-//         onChange={(e) => setInput(e.target.value)}
-//         type="text"
-//         placeholder="Type something"
-//         className="message_input"/>
-//         <button  onClick={handleSend} className="inputBtn">SEND</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-

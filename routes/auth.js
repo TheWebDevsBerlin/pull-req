@@ -12,7 +12,6 @@ router.delete('/logout', (req, res) => {
 
 // returns the logged in user
 router.get('/loggedin', (req, res) => {
-  console.log(req.user);
   res.json(req.user);
 });
 
