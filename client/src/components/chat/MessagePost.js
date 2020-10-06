@@ -9,11 +9,12 @@ export default class MessagePost extends Component {
     content: this.props.content.content,
     by: this.props.by
   }
-  render() {
 
+  render() {
     let style = ''
     this.state.by._id === this.state.user._id ?
       style = 'chat_text'
+
       :
       style = 'chat_textUser'
       

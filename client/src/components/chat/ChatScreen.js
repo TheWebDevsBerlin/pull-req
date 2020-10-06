@@ -62,6 +62,7 @@ class ChatScreen extends React.Component {
       by: this.state.by,
       message: message
     }).then(() => {
+      console.log({ sendMessage: this.state.to })
       socket.send({ type: 'message', message: message })
       socket.send({ type: 'typing', message: null })
     }).catch(err => console.log(err))
@@ -74,7 +75,6 @@ class ChatScreen extends React.Component {
     if (!this.props.user) return (<Redirect to='/' />)
 
     const messageHistory = this.state.messageHistory.map(x => {
-      console.log({ x })
       return <li key={ x._id }> <MessagePost user={ this.props.user._id } by={ x.by } to={ x.to } content={ x } /></li>
     })
 
