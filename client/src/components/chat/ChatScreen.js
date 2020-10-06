@@ -87,9 +87,13 @@ class ChatScreen extends React.Component {
 
     return (
       <div className="chat-area">
-            { messageHistory }
-            { actionFeedback }
-            { systemFeedback }
+            <div>
+               { messageHistory }
+            </div> 
+            <div>
+              { actionFeedback }
+              { systemFeedback }
+            </div>
         <ChatForm
           postMessage={ this.postMessage }
           user={ this.props.user }

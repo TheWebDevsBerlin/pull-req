@@ -12,16 +12,16 @@ export default class MessagePost extends Component {
 
   render() {
     let style = ''
-    this.state.by._id === this.state.user._id ?
-      style = 'chat_text'
+    this.state.by._id === this.state.user ?
+      style = 'chat_textUser'
+  
 
       :
-      style = 'chat_textUser'
+      style = 'chat_text'
       
-      console.log(this.state.by._id, this.state.user._id)
     return (
       <div className={style}>
-          <span>{this.state.by._id !== this.state.user._id && this.state.by.firstname}</span>
+          <span>{this.state.by._id !== this.state.user && this.state.by.firstname}</span>
           <p>{this.state.content}</p>
 
       </div>
