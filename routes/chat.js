@@ -4,7 +4,9 @@ const User = require("../models/User")
 const Message = require("../models/Message")
 
 router.get('/users', (req, res) => {
+  console.log('users');
   User.find({}).then(data => {
+    console.log({ data });
     return res.json(data)
   }).catch(err => res.json(err))
 });
@@ -18,14 +20,21 @@ router.get('/messages', (req, res) => {
     .populate('by')
     .populate('to')
     .then(data => {
-      console.log('GET message:', data)
-    return res.json(data)
-  }).catch(err => res.json(err))
+      return res.json(data)
+    }).catch(err => res.json(err))
+});
+
+router.get('/messages/last-from-user/:id', (req, res) => {
+  Message.findOne({ by: req.params.id }).sort({ field: 'asc', _id: -1 }).limit(1)
+    .populate('by')
+    .populate('to')
+    .then(data => {
+      return res.json(data)
+    }).catch(err => res.json(err))
 });
 
 router.post('/messages', (req, res) => {
   const { to, by, message } = req.body
-  console.log({ to, by, message });
 
   Message.create({ to, by, content: message }).then(data => {
     return res.json(data)

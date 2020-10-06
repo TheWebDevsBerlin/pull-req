@@ -7,10 +7,10 @@ export default class MessagePost extends Component {
     content: this.props.content.content,
     by: this.props.by
   }
-  render() {
 
+  render() {
     let style = ''
-    this.state.by._id === this.state.user._id ?
+    this.state.by._id === this.state.user ?
       style = '-me'
       :
       style = ''
@@ -20,10 +20,8 @@ export default class MessagePost extends Component {
           <div className={`chat-bubble-head${style}`}>
             <div className='contact-head' style={{ 'backgroundImage': `url(${this.state.by.picture})` }}></div>
           </div>
-          <span className='chat-by'>{this.state.by._id !== this.state.user._id && this.state.by.firstname}</span>
-
-          <p>{this.state.content}</p>
-
+          <span className='chat-by'>{ this.state.by._id !== this.state.user && this.state.by.firstname }</span>
+          <p>MSG: { this.state.content }</p>
         </div>
       </div >
     )
