@@ -27,16 +27,15 @@ export default class ChatForm extends Component {
     if (!this.props.user) return (<Redirect to='/' />)
 
     return (
-      
-        <form className="chat_input" onSubmit={this.handleSubmit}>
-          <input className="message_input" 
+      <form className="chat_input" onSubmit={this.handleSubmit}>
+        <input autocomplete="off"
+          className="message_input" 
           type="text" name="message" 
           placeholder="Type your message here..." 
           value={this.state.message} 
           onChange={this.handleChange} />
-          <button className="inputBtn">Send</button>
-          
-        </form>
+        <button className="inputBtn">Send</button>
+      </form>
     )
   }
 }

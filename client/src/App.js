@@ -21,8 +21,7 @@ class App extends Component {
     menuIsOpen: false,
     // cards logic:
     labels: [],
-    page: 1,
-    currentLabel: {}
+    page: 1
   }
 
   handleCardLeftScreen = (id) => {
@@ -118,9 +117,8 @@ class App extends Component {
         </Switch>
         {this.state.user ?
           (<SwipeButtons
-            label={ this.state.currentLabel }
-            handleCardLeftScreen={ this.handleCardLeftScreen }
-            currentLabel={ this.state.currentLabel } />) :
+            label={ this.state.labels[this.state.labels.length - 1] }
+            handleCardLeftScreen={ this.handleCardLeftScreen } />) :
           (<Signup user={ this.state.user } />)
         }
       </Router>

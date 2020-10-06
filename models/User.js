@@ -13,6 +13,9 @@ const userSchema = new Schema(
     blog: String,
     location: String,
     created_at: Date,
+    // chats: [
+    //   { type: Schema.Types.ObjectId, ref: "User" },
+    // ]
   },
   {
     timestamps: true

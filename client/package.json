@@ -2,7 +2,7 @@
   "name": "pull-req",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://127.0.0.1:5555",
+  "proxy": "http://localhost:5555",
   "secure": false,
   "dependencies": {
     "@material-ui/core": "^4.11.0",

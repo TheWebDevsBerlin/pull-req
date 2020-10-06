@@ -45,7 +45,7 @@ let getData = async (query, per_page, page) => {
       }),
     }));
     const repo = await findMore(newEntry.repo_id);
-    if (!repo.message) { newEntry.repo = repo; } else { console.log(repo); }
+    if (!repo.message) { newEntry.repo = repo; } else { console.log(repo.message); }
     return newEntry;
   })
   let data = await Promise.all(ops);
@@ -59,6 +59,7 @@ let findMore = async (repo_id) => {
       about: api_res.data.description,
       repo_id: api_res.data.id,
       fork: api_res.data.fork,
+      html_url: api_res.data.html_url,
       created_at: api_res.data.created_at,
       updated_at: api_res.data.updated_at,
       homepage: api_res.data.homepage,

@@ -4,9 +4,7 @@ const User = require("../models/User")
 const Message = require("../models/Message")
 
 router.get('/users', (req, res) => {
-  console.log('users');
   User.find({}).then(data => {
-    console.log({ data });
     return res.json(data)
   }).catch(err => res.json(err))
 });

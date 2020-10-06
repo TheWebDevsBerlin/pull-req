@@ -12,9 +12,9 @@ const SwiptButtons = (props) => {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState('');
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   const handleSend = () => {
     console.log('sending message (todo)', message);
@@ -38,24 +38,30 @@ const SwiptButtons = (props) => {
 
   return (
     <div className="buttons">
-      <IconButton
-        onClick={ () => props.handleCardLeftScreen(props.label._id) }
-        className="buttons_close">
-        <CloseIcon fontSize="large" />
-      </IconButton>
-      <IconButton className="buttons_github">
-        <GitHubIcon fontSize="large" />
-      </IconButton>
-      <IconButton className="buttons_fav">
-        <img src={ Logo } alt="PullReqLogo" width="40rem" onClick={ props.handleClickOpen } />
-      </IconButton>
-      <SendMessageDialog
-        handleClose={ handleClose }
-        handleSend={ handleSend }
-        message={ message }
-        handleMessageChange={ handleMessageChange }
-        open={ open }
-      />
+      {(props.label) && (
+        <>
+        <IconButton
+          onClick={ () => props.handleCardLeftScreen(props.label._id) }
+          className="buttons_close">
+          <CloseIcon fontSize="large" />
+        </IconButton>
+          <IconButton className="buttons_github"
+            onClick={ () => window.open(props.label.repo.html_url) }>
+          <GitHubIcon fontSize="large" />
+        </IconButton>
+
+        <IconButton className="buttons_fav">
+            <img src={ Logo } alt="PullReqLogo" width="40rem" onClick={ handleClickOpen } />
+        </IconButton>
+        <SendMessageDialog
+          handleClose={ handleClose }
+          handleSend={ handleSend }
+          message={ message }
+          handleMessageChange={ handleMessageChange }
+          open={ open }
+        />
+        </>
+      ) }
 
     </div>
   );

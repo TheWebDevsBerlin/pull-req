@@ -52,12 +52,17 @@ io.on('connection', socket => {
   socket.on("disconnect", () => console.log("Client disconnected"));
 
   socket.on('message', data => {
-    console.log('NEW MESSAGE:', data)
     if (data.type === 'message') {
-      socket.emit('message', data)
-      socket.broadcast.emit('message', data)
+      io.emit('message', {
+        data
+      })
+      io.broadcast.emit('message', {
+        data
+      })
     } else {
-      socket.broadcast.emit('message', data)
+      io.broadcast.emit('message', {
+        data
+      })
     }
   });
 });

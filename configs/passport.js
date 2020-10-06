@@ -41,7 +41,8 @@ passport.use(
               company: profile._json.company,
               blog: profile._json.blog,
               location: profile._json.location,
-              created_at: profile._json.created_at
+              created_at: profile._json.created_at,
+              users: []
             })
               .then(dbUser => {
                 done(null,dbUser);
