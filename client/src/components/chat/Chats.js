@@ -9,6 +9,7 @@ class Chats extends React.Component {
   }
 
   componentDidMount() {
+    this.props.setBackButton({ path: '/', icon: 'back', click: '' })
     axios.get('/api/chat/users')
       .then(response => {
         this.setState({
@@ -48,10 +49,13 @@ class Chats extends React.Component {
       this.state.contacts.map(contact => {
         return (
           <Chat 
+            key={ contact._id }
             className="chats"
-            name={ contact.login }
+            updateToField={ this.props.updateToField }
+            name={ contact.displayName || contact.login }
+            id={ contact._id }
             message=''//{ this.state[contact._id].content }//'{ this.findLastMessageFromUser(contact._id).content }'
-            timestamp='{ this.findLastMessageFromUser(contact._id).created_at }'
+            timestamp='' // { this.findLastMessageFromUser(contact._id).created_at }
             profilePic={ contact.avatar_url }
           />
         )
