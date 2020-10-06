@@ -22,7 +22,7 @@ class App extends Component {
     // cards logic:
     labels: [],
     page: 1,
-    currentLabel: {}
+    
   }
 
   handleCardLeftScreen = (id) => {
@@ -118,9 +118,9 @@ class App extends Component {
         </Switch>
         {this.state.user ?
           (<SwipeButtons
-            label={ this.state.currentLabel }
+            label={ this.state.labels[this.state.labels.length - 1]} 
             handleCardLeftScreen={ this.handleCardLeftScreen }
-            currentLabel={ this.state.currentLabel } />) :
+             />) :
           (<Signup user={ this.state.user } />)
         }
       </Router>

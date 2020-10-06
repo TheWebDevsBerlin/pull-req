@@ -58,6 +58,7 @@ let findMore = async (repo_id) => {
     const newRes = {
       about: api_res.data.description,
       repo_id: api_res.data.id,
+      html_url: api_res.data.html_url,
       fork: api_res.data.fork,
       created_at: api_res.data.created_at,
       updated_at: api_res.data.updated_at,
