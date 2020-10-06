@@ -40,6 +40,7 @@ export default function SideMenu(props) {
     if(props.user){
       logout();
       props.setUser(null);
+      props.closeMenu();
     };
   }
 

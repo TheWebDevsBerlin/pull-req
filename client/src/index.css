@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
+  background-color: lightgray;
 }
 
 code {
@@ -25,5 +26,15 @@ code {
   width: 100vw;
   margin: 0 auto;
   outline: 1px solid gray;
+  background-color: white;
   position: relative; /* this is for the menu to open inside the root element */
+}
+#root-login-button {
+  margin: 0.25rem 1rem;
+  width: calc(100% - 2rem);
+  position: fixed;
+  bottom: 0.5rem;
+  z-index: 2000;
+  background: white;
+  height: 5rem;
 }

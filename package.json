@@ -7,7 +7,9 @@
     "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "server": "DEBUG=pull-req:* nodemon ./bin/www",
     "client": "cd client && npm start",
-    "dev-windows": "nodemon ./bin/www"
+    "build": "cd client && react-scripts build",
+    "dev-windows": "nodemon ./bin/www",
+    "heroku-pre-build": ""
   },
   "dependencies": {
     "@octokit/rest": "^18.0.6",
@@ -28,7 +30,8 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "proxy-addr": "^2.0.6",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

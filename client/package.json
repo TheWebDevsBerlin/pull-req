@@ -2,7 +2,8 @@
   "name": "pull-req",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5555",
+  "proxy": "http://127.0.0.1:5555",
+  "secure": false,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -23,7 +24,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "react-tinder-card": "^1.2.1"
+    "react-tinder-card": "^1.2.1",
+    "socket.io-client": "^2.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

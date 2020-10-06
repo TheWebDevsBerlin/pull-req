@@ -6,7 +6,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link, useHistory } from "react-router-dom";
-
+import Logo from './../../images/PullReq.svg';
 
 function Navbar({ backButton, user , setUser, menuIsOpen, setMenuIsOpen }) {
   const toggleDrawer = (e) => {
@@ -40,13 +40,11 @@ function Navbar({ backButton, user , setUser, menuIsOpen, setMenuIsOpen }) {
       )}
       
       <Link to="/">
-        <h1>Pull<span role="img" aria-label="Heart">❣️</span>Request</h1>
+        <h1><img src={ Logo } alt="PullReqLogo" width="60rem" /></h1>
       </Link>
-      <Link to="/chat">
-        <IconButton>
-          <ForumIcon className="header_icon" fontSize="large" />
-        </IconButton>
-      </Link>
+      <IconButton disabled={ !user } href="/chat">
+        <ForumIcon className="header_icon" fontSize="large" />
+      </IconButton>
     </div>
   );
 }

@@ -11,20 +11,26 @@ let getData = async (query, per_page, page) => {
   let options = {
     q: query,
     state: 'open',
-    sort: 'updated',
-    order: 'des',
+    public: true,
+    sort: 'created',
+    order: 'desc',
     per_page,
     page
   };
 
   let res = await octokit.search.issuesAndPullRequests(options);
   let ops = res.data.items.map(async entry => {
-    console.log(entry.title);
+    const repo_credentials = entry.repository_url.split('/');
     const newEntry = JSON.parse(JSON.stringify({
       _id: uuidv4(),
       repo_id: {
-        owner: entry.user.login,
-        repo: entry.repository_url.slice(entry.repository_url.lastIndexOf('/') + 1,)
+        owner: repo_credentials[repo_credentials.length - 2],
+        repo: repo_credentials[repo_credentials.length - 1]
+      },
+      owner: {
+        id: entry.user.id,
+        login: entry.user.login,
+        url: entry.user.html_url
       },
       image: entry.user.avatar_url || entry.user.gravatar_id || 'placeholder.jpg',
       title: entry.title,
@@ -38,11 +44,11 @@ let getData = async (query, per_page, page) => {
         }
       }),
     }));
-    newEntry.repo = await findMore(newEntry.repo_id);
+    const repo = await findMore(newEntry.repo_id);
+    if (!repo.message) { newEntry.repo = repo; } else { console.log(repo); }
     return newEntry;
   })
   let data = await Promise.all(ops);
-
   return data;
 };
 
@@ -61,8 +67,8 @@ let findMore = async (repo_id) => {
     }
     return newRes;
   } catch (e) {
-    // console.error(e);
-    return {};
+    console.error('Error finding more', repo_id, e.status, e.message);
+    return { message: e.status };
   }
 };
 
