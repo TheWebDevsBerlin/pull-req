@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChatScreen.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import MessagePost from './MessagePost';
 import ChatForm from './ChatForm';
 import axios from 'axios'
@@ -22,7 +22,8 @@ class ChatScreen extends React.Component {
 
   componentDidMount = () => {
     this.props.setBackButton({ path: '/chat', icon: 'back', click: '' })
-    axios.get(`/api/chat/messages/${this.state.by}/${this.state.to}`).then(response => {
+    const partnerId = this.props.location.pathname.split('/').pop();
+    axios.get(`/api/chat/messages/${this.state.by}/${this.state.to || partnerId}`).then(response => {
       this.setState({
         messageHistory: response.data
       })
@@ -74,7 +75,10 @@ class ChatScreen extends React.Component {
     if (!this.props.user) return (<Redirect to='/' />)
 
     const messageHistory = this.state.messageHistory.map(x => {
-      return <li key={ x._id }> <MessagePost user={ this.props.user._id } by={ x.by } to={ x.to } content={ x } /></li>
+      return (
+        <li key={ x._id }>
+          <MessagePost user={ this.props.user._id } by={ x.by } to={ x.to } content={ x } time={ x.created_at } />
+        </li>)
     })
 
     const { actionFeedback } = this.state;
@@ -102,4 +106,4 @@ class ChatScreen extends React.Component {
   }
 
 }
-export default ChatScreen;
+export default withRouter(ChatScreen);

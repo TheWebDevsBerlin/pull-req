@@ -42,7 +42,7 @@ function Navbar({ backButton, user, menuIsOpen, setMenuIsOpen }) {
       )}
       
       <Link to="/">
-        <img src={ Logo } alt="PullReqLogo" width="40rem" /> Pull request
+        <img src={ Logo } alt="PullReqLogo" width="40rem" /> ull request
       </Link>
 
       <IconButton style={ { visibility: ((location.pathname !== '/' || !user) && 'hidden') } } href="/chat">
