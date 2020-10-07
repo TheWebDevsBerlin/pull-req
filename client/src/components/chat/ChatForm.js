@@ -10,9 +10,12 @@ export default class ChatForm extends Component {
 
   handleChange = e => {
     const { name, value } = e.target
-    let typing = value.length ? `${this.state.user.displayName || this.state.user.username} is typing...` : null
+    let typing = value.length ?
+      `${this.state.user.displayName ||
+      this.state.user.username} is typing...` :
+      null
     this.setState({ [name]: value })
-    this.props.isTyping(typing)
+    this.props.isTyping(typing, this.props.to)
   }
 
   handleSubmit = e => {

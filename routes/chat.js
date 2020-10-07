@@ -3,8 +3,14 @@ const router = express.Router();
 const User = require("../models/User")
 const Message = require("../models/Message")
 
-router.get('/users', (req, res) => {
-  User.find({}).then(data => {
+router.get('/users/:by', async (req, res) => {
+  const myMessages = await Message.find({ by: req.params.by })
+  const users = [...new Set(
+    myMessages
+      .map(item => JSON.parse(JSON.stringify(item.to)))
+      .filter(item => item != 'null')
+  )];
+  User.find({ _id: { $in: users } }).then(data => {
     return res.json(data)
   }).catch(err => res.json(err))
 });
