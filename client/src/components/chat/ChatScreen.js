@@ -17,16 +17,20 @@ class ChatScreen extends React.Component {
     response: "", // socket io response
     endpoint: "http://localhost:5555", // socket io connection
     actionFeedback: "",
+    actionFeedbackMsg: "",
     systemFeedback: ""
   }
 
   componentDidMount = () => {
+    const to = this.props.location.pathname.split('/').pop();
+    if (!this.state.to) this.setState({ to });
+
     this.props.setBackButton({ path: '/chat', icon: 'back', click: '' })
-    const partnerId = this.props.location.pathname.split('/').pop();
-    axios.get(`/api/chat/messages/${this.state.by}/${this.state.to || partnerId}`).then(response => {
+    axios.get(`/api/chat/messages/${this.state.by}/${this.state.to || to}`).then(response => {
       this.setState({
         messageHistory: response.data
       })
+      this.scrollDown();
     }).catch(err => console.log(err))
 
     // ### Socket Client ####
@@ -40,6 +44,7 @@ class ChatScreen extends React.Component {
         this.setState({ response: message })
         axios.get(`/api/chat/messages/${this.state.by}/${this.state.to}`).then(response => {
           if (response) this.setState({ messageHistory: response.data })
+          this.scrollDown();
         })
       } else if (type === 'typing') {
         this.setState({ actionFeedback: message });
@@ -52,8 +57,23 @@ class ChatScreen extends React.Component {
     socket.send({ type: 'system', message: `${this.state.by} is connected.` })
   }
 
-  isTyping = typing => {
-    socket.send({ type: 'typing', message: typing })
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.actionFeedback != this.state.actionFeedback) {
+      const to = this.props.location.pathname.split('/').pop();
+      const { actionFeedback } = this.state;
+      if (actionFeedback !== null && actionFeedback.to.toString() === to.toString()) {
+        this.setState({ actionFeedbackMsg: actionFeedback.typing });
+      }
+    }
+  }
+
+  scrollDown = () => {
+    document.querySelector('.chat-area>div').scrollBy(0, 10000);
+  }
+
+
+  isTyping = (typing, to) => {
+    socket.send({ type: 'typing', message: { typing, to } })
   }
 
   postMessage = message => {
@@ -63,14 +83,13 @@ class ChatScreen extends React.Component {
       by: this.state.by,
       message: message
     }).then(() => {
-      socket.send({ type: 'message', message: message });
+      socket.send({ type: 'message', message });
       socket.send({ type: 'typing', message: null });
     }).catch(err => console.log(err))
     this.setState({
       message: ""
     })
   }
-
   render() {
     if (!this.props.user) return (<Redirect to='/' />)
 
@@ -81,7 +100,7 @@ class ChatScreen extends React.Component {
         </li>)
     })
 
-    const { actionFeedback } = this.state;
+    const { actionFeedbackMsg } = this.state;
     const { systemFeedback } = this.state;
     systemFeedback.length && setTimeout(() => {
       this.setState({ systemFeedback: "" })
@@ -93,13 +112,14 @@ class ChatScreen extends React.Component {
           { messageHistory }
         </div>
         <div>
-          { actionFeedback }
+          { actionFeedbackMsg }
           { systemFeedback }
         </div>
         <ChatForm
           postMessage={ this.postMessage }
           user={ this.props.user }
           isConnected={ this.props.isConnected }
+          to={ this.state.by }
           isTyping={ this.isTyping } />
       </div>
     )

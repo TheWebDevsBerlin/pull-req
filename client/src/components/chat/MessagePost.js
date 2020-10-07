@@ -23,7 +23,7 @@ export default class MessagePost extends Component {
         { this.state.by._id !== this.state.user && (
           <Avatar src={ this.state.by.avatar_url } />) }
         <div>
-          <span>{ this.state.content }</span>
+          <div>{ this.state.content }</div>
           <div>{
             formatRelative(subDays(Date.parse(this.state.time), 0), new Date())
           }</div>

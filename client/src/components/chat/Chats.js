@@ -10,38 +10,12 @@ class Chats extends React.Component {
 
   componentDidMount() {
     this.props.setBackButton({ path: '/', icon: 'back', click: '' })
-    axios.get('/api/chat/users')
+    axios.get(`/api/chat/users/${this.props.user._id}`)
       .then(response => {
         this.setState({
           contacts: response.data.filter(user => user._id !== this.props.user._id)
         });
       });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // if (prevState.contacts.length !== this.state.contacts.length) {
-    //   const newContacts = [];
-    //   for (const idx in this.state.contacts) {
-    //     const id = this.state.contacts[idx]._id;
-    //     newContacts.push(this.findLastMessageFromUser(id, idx));
-    //     this.setState({ contacts: newContacts });
-    //   }
-    // }
-  }
-
-
-  findLastMessageFromUser = (id, idx) => {
-    // axios.get(`/api/chat/messages/last-from-user/${id}`)
-    //   .then(response => {
-    //     const lastMessage = {
-    //       content: response.data.content,
-    //       from: response.data.created_at
-    //     }
-    //     const lm = this.state.contacts;
-    //     console.log({ lm: lm[idx], lastMessage });
-    //     lm.lastMessage = lastMessage;
-    //     return lm;
-    //   });
   }
 
   render() {
@@ -54,8 +28,8 @@ class Chats extends React.Component {
             updateToField={ this.props.updateToField }
             name={ contact.displayName || contact.login }
             id={ contact._id }
-            message=''//{ this.state[contact._id].content }//'{ this.findLastMessageFromUser(contact._id).content }'
-            timestamp='' // { this.findLastMessageFromUser(contact._id).created_at }
+            message=''
+            timestamp=''
             profilePic={ contact.avatar_url }
           />
         )
