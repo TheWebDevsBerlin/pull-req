@@ -2,9 +2,11 @@
 
  <hr>
 Pull-request is a collaboration platform that allows users to browse GitHub repositories and connect with the owner to offer assistance on their project.
- <br><br>
+ <br>
+
 >"Pull-request is like a dating app-except you end up working with your matches instead of sleeping with them." - User
- <br><br>
+ 
+ 
 The app only displays projects labeled as <strong>'Help Wanted'</strong> to encourage this collaboration.
 <hr>
 
