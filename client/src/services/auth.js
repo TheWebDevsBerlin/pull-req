@@ -12,7 +12,6 @@ const signup = (username, password) => {
 };
 
 const loginGitHub = () => {
-  console.log('client auth.js');
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "http://localhost:5555/api/auth/github", true);
   xhttp.send();

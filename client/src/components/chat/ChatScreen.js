@@ -58,7 +58,7 @@ class ChatScreen extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.actionFeedback != this.state.actionFeedback) {
+    if (prevState.actionFeedback !== this.state.actionFeedback) {
       const to = this.props.location.pathname.split('/').pop();
       const { actionFeedback } = this.state;
       if (actionFeedback !== null && actionFeedback.to.toString() === to.toString()) {

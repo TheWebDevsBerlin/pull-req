@@ -45,7 +45,7 @@ let getData = async (query, per_page, page) => {
       }),
     }));
     const repo = await findMore(newEntry.repo_id);
-    if (!repo.message) { newEntry.repo = repo; } else { console.log(repo); }
+    if (!repo.message) { newEntry.repo = repo; }
     return newEntry;
   })
   let data = await Promise.all(ops);

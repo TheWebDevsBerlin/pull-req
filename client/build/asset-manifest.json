@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d2057f6e.chunk.css",
+    "main.js": "/static/js/main.8c621f3b.chunk.js",
+    "main.js.map": "/static/js/main.8c621f3b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.15024440.js",
+    "runtime-main.js.map": "/static/js/runtime-main.15024440.js.map",
+    "static/js/2.7831e491.chunk.js": "/static/js/2.7831e491.chunk.js",
+    "static/js/2.7831e491.chunk.js.map": "/static/js/2.7831e491.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ec49bd300434ceedc441bde648b4f9df.js": "/precache-manifest.ec49bd300434ceedc441bde648b4f9df.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d2057f6e.chunk.css.map": "/static/css/main.d2057f6e.chunk.css.map",
+    "static/js/2.7831e491.chunk.js.LICENSE.txt": "/static/js/2.7831e491.chunk.js.LICENSE.txt",
+    "static/media/PullReq.svg": "/static/media/PullReq.e2f35405.svg",
+    "static/media/PullReqLogo.svg": "/static/media/PullReqLogo.e520bfb8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.15024440.js",
+    "static/js/2.7831e491.chunk.js",
+    "static/css/main.d2057f6e.chunk.css",
+    "static/js/main.8c621f3b.chunk.js"
+  ]
+}

@@ -8,10 +8,13 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
-const conn_str = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.2pv18.mongodb.net/pull-req?retryWrites=true&w=majority`;
+let constr = 'mongodb://localhost/pull-req';
+if (process.env.NODE_ENV === 'production') {
+  constr = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.2pv18.mongodb.net/pull-req?retryWrites=true&w=majority`;
+}
 
 mongoose
-  .connect(conn_str, {
+  .connect(constr, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true,
@@ -45,7 +48,9 @@ app.use(require('node-sass-middleware')({
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, '/client/build')));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/client/build')));
+}
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // session configuration
@@ -83,8 +88,10 @@ app.use('/api/auth/', auth);
 const chat = require('./routes/chat');
 app.use('/api/chat/', chat);
 
-// app.use((req, res) => {
-//   res.sendFile(__dirname + "/client/build/index.html");
-// });
+if (process.env.NODE_ENV === 'production') {
+  app.use((req, res) => {
+    res.sendFile(__dirname + "/client/build/index.html");
+  });
+}
 
 module.exports = app;
