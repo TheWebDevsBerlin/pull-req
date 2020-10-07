@@ -1,4 +1,4 @@
-![Pull-Req](https://raw.githubusercontent.com/TheWebDevsBerlin/pull-req/c680fa59263aa2f8dfecf3f1f8185baff2550210/client/src/images/PullReqIcon.svg)
+![Pull-Req](client/src/images/PullReqLogo.svg)
 
  <hr>
 Pull-request is a collaboration platform that allows users to browse GitHub repositories and connect with the owner to offer assistance on their project.
@@ -36,6 +36,8 @@ Pull-request utilizes the GitHub API and the ocktokit/rest api client for data. 
 
 ## Interface
 The app is optimized for mobile and desktop devices and is fully responsive in all formats. The interface is designed to be clean and accessible to give users an intuitive experience.
+
+![Pull-Req](client/src/images/MobileIcon.png)
 
 ## ToDos
 

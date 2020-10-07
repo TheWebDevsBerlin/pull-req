@@ -6,7 +6,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link, useHistory, useLocation } from "react-router-dom";
-import Logo from './../../images/PullReq.svg';
+import Logo from './../../images/PullReqIcon.svg';
 
 function Navbar({ backButton, user, menuIsOpen, setMenuIsOpen }) {
   const toggleDrawer = (e) => {

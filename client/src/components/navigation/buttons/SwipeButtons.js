@@ -4,7 +4,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton  from '@material-ui/core/IconButton';
 import SendMessageDialog from './SendMessageDialog';
-import Logo from './../../../images/PullReqLogo.svg';
+import Logo from './../../../images/PullReqGreen.svg';
 
 
 // import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
