@@ -5,9 +5,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton  from '@material-ui/core/IconButton';
 import SendMessageDialog from './SendMessageDialog';
 import Logo from './../../../images/PullReqGreen.svg';
-
-
-// import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
+import axios from 'axios';
 
 const SwiptButtons = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -16,17 +14,21 @@ const SwiptButtons = (props) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
+// https://api.github.com/repos/giladt/getHired/issues/4/comments
+// https://api.github.com/repos/giladt/getHired/issues/4/comments
 
-  const handleSend = () => {
-    console.log('sending message (todo)', message);
-    console.log(props.currentLabel)
-    // octokit.issues.createComment({
-    //   owner,
-    //   repo,
-    //   issue_number,
-    //   body,
-    // });
-    setOpen(false);
+  const handleMessageSend = () => {
+    axios.post('/api/label/comment', {
+      owner: 'giladt',
+      repo: 'getHired',
+      issue_number: 4,
+      body: message
+    }).then(res => {
+      console.log('message sent successfully', { res });
+      setOpen(false);
+    }).catch(err => {
+      console.log('message failed to send', { err });
+    });
   };
 
   const handleClose = () => {
@@ -58,7 +60,7 @@ const SwiptButtons = (props) => {
       </IconButton>
       <SendMessageDialog
         handleClose={ handleClose }
-        handleSend={ handleSend }
+        handleMessageSend={ handleMessageSend }
         message={ message }
         label={ props.label }
         handleMessageChange={ handleMessageChange }

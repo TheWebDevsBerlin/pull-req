@@ -45,9 +45,11 @@ function Navbar({ backButton, user, menuIsOpen, setMenuIsOpen }) {
         <img src={ Logo } alt="PullReqLogo" width="40rem" /> ull request
       </Link>
 
-      <IconButton style={ { visibility: ((location.pathname !== '/' || !user) && 'hidden') } } href="/chat">
-        <ForumIcon className="header_icon" fontSize="large" />
-      </IconButton>
+      <Link to="/chat">
+        <IconButton style={ { visibility: ((location.pathname !== '/' || !user) && 'hidden') } }>
+          <ForumIcon className="header_icon" fontSize="large" />
+        </IconButton>
+      </Link>
     </div>
   );
 }

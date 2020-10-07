@@ -6,6 +6,7 @@ import gitPullRequest from '@iconify/icons-octicon/git-pull-request';
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
+import { formatRelative, subDays } from 'date-fns'
 
 class TinderCards extends Component {
 
@@ -42,7 +43,9 @@ class TinderCards extends Component {
                     <span><Icon icon={ gitPullRequest } /> </span>
                     <span>{ label.repo_id.repo }</span>
                   </h2>
-                  <p>Last updated on { label.updated_at }</p>
+                  <p>Last updated {
+                    formatRelative(subDays(Date.parse(label.updated_at), 0), new Date())
+                  }</p>
                 </header>
                 <footer>
                   { label.labels.map(tag => {

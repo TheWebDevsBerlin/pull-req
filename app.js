@@ -9,9 +9,9 @@ const logger = require('morgan');
 const path = require('path');
 
 let constr = 'mongodb://localhost/pull-req';
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   constr = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.2pv18.mongodb.net/pull-req?retryWrites=true&w=majority`;
-}
+// }
 
 mongoose
   .connect(constr, {

@@ -44,8 +44,12 @@ let getData = async (query, per_page, page) => {
         }
       }),
     }));
-    const repo = await findMore(newEntry.repo_id);
-    if (!repo.message) { newEntry.repo = repo; }
+    try {
+      const repo = await findMore(newEntry.repo_id);
+      newEntry.repo = repo;
+    } catch (err) {
+      console.log(err.message);
+    }
     return newEntry;
   })
   let data = await Promise.all(ops);
@@ -87,9 +91,12 @@ router.get('/api/repo/:owner/:repo', (req, res, next) => {
 
 router.get('/api/labels/:query/:per_page/:page?', async (req, res, next) => {
   const {query, per_page, page} = req.params;
-  const data = await getData(query, per_page, page);
-
-  res.status(200).json({ data: data })
+  try {
+    const data = await getData(query, per_page, page);
+    res.status(200).json({ data: data });
+  } catch (err) {
+    res.status(err.code).json({ message: err.message });
+  }
 });
 
 router.get('/api/labels', async (req, res, next) => {
@@ -98,6 +105,21 @@ router.get('/api/labels', async (req, res, next) => {
   });
 
   res.status(200).json({data: (await data).data.items})
+});
+
+router.post('/api/label/comment', async (req, res, next) => {
+  const { owner, repo, issue_number, body } = req.body;
+  console.log(owner, repo, issue_number);
+  try {
+    const comment = await octokit.issues.createComment({
+      owner, repo, issue_number, body
+    })
+    console.log({ comment });
+    return res.status(200).json({ comment });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+
 });
 
 module.exports = router;
