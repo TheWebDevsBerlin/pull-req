@@ -13,7 +13,7 @@ const signup = (username, password) => {
 
 const loginGitHub = () => {
   var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://localhost:5555/api/auth/github", true);
+  xhttp.open("GET", `${process.env.API_SERVER_URL}/api/auth/github`, true);
   xhttp.send();
 };
 

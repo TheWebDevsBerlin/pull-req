@@ -13,12 +13,13 @@ export default function FormDialog(props) {
   // const handleClose = () => {
   //   setOpen(false);
   // };
-
+  console.log(process.env.API_SERVER_URL);
   return (
     !props.user && (
       <Button
         id='root-login-button'
-        href="http://localhost:5555/api/auth/github"
+        href={ `${process.env.REACT_APP_API_SERVER_URL}/api/auth/github` }
+        // href="http://localhost:5555/api/auth/github"
         variant="outlined"
         color="primary"
         className="buttons">

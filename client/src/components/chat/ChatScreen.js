@@ -15,7 +15,7 @@ class ChatScreen extends React.Component {
     messageHistory: [],
     message: "",
     response: "", // socket io response
-    endpoint: "http://localhost:5555", // socket io connection
+    endpoint: `${process.env.REACT_APP_API_SERVER_URL}`, // socket io connection
     actionFeedback: "",
     actionFeedbackMsg: "",
     systemFeedback: ""

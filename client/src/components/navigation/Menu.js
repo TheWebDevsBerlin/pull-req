@@ -83,9 +83,9 @@ export default function SideMenu(props) {
             </ListItem>
           ):(
           <ListItem button>
-            <a className={clsx(classes.link)} href="http://localhost:5555/api/auth/github">
-              <ListItemIcon><GitHubIcon/></ListItemIcon>
-              <ListItemText primary="Login / Sign up" />
+                <a className={ clsx(classes.link) } href={ `${process.env.REACT_APP_API_SERVER_URL}/api/auth/github` }>
+            <ListItemIcon><GitHubIcon/></ListItemIcon>
+            <ListItemText primary="Login / Sign up" />
             </a>
           </ListItem>
           )}
