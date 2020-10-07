@@ -15,7 +15,7 @@ class ChatScreen extends React.Component {
     messageHistory: [],
     message: "",
     response: "", // socket io response
-    endpoint: "http://localhost:5555", // socket io connection
+    endpoint: `${process.env.REACT_APP_API_SERVER_URL}`, // socket io connection
     actionFeedback: "",
     actionFeedbackMsg: "",
     systemFeedback: ""
@@ -58,7 +58,7 @@ class ChatScreen extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.actionFeedback != this.state.actionFeedback) {
+    if (prevState.actionFeedback !== this.state.actionFeedback) {
       const to = this.props.location.pathname.split('/').pop();
       const { actionFeedback } = this.state;
       if (actionFeedback !== null && actionFeedback.to.toString() === to.toString()) {

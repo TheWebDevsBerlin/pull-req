@@ -14,6 +14,7 @@
     "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
     "express-session": "^1.17.1",
     "github": "^14.0.0",
     "http-proxy-middleware": "^1.0.5",
@@ -30,7 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "REACT_APP_API_SERVER_URL=https://pull-req.herokuapp.com react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

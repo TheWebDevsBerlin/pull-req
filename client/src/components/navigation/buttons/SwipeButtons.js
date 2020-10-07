@@ -37,7 +37,6 @@ const SwiptButtons = (props) => {
     setMessage(e.target.value)
   }
 
- console.log(props.label)
   return (
     
     <div className="buttons">

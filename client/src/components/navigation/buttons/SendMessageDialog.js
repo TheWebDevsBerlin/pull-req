@@ -56,7 +56,7 @@ export default function SendMessageDialog(props) {
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-console.log(props)
+
   return (
    
       <Dialog

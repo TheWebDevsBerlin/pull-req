@@ -1,8 +1,6 @@
 const express  = require('express');
 const router = express.Router();
 const passport = require('passport');
-// const bcrypt   = require('bcrypt');
-// const User     = require('../models/User');
 
 router.delete('/logout', (req, res) => {
   req.session.destroy(function (err) {
@@ -24,7 +22,7 @@ router.get('/github/callback', (req,res) => {
 
     req.login(user, err => {
       if (err) return res.status(500).json({ message: 'Error while attempting to login' });
-      return res.redirect('http://localhost:3000');
+      return res.redirect(`${process.env.API_CLIENT_URL}`);
     });
   })(req, res);
 });

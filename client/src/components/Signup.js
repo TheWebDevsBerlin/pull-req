@@ -8,17 +8,11 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 // import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function FormDialog(props) {
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   return (
     !props.user && (
       <Button
         id='root-login-button'
-        href="http://localhost:5555/api/auth/github"
+        href={ `${process.env.REACT_APP_API_SERVER_URL}/api/auth/github` }
         variant="outlined"
         color="primary"
         className="buttons">
