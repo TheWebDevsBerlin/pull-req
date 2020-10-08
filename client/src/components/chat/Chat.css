@@ -26,3 +26,7 @@ a {
 .chat_image {
     margin-right: 20px;
 }
+.chats-list {
+    height: calc(83vh - 3px);
+    overflow-y: auto;
+}

@@ -89,6 +89,7 @@ class Chats extends React.Component {
         </AppBar>
         <SwipeableViews
           index={ this.state.value }
+          className="chats-list"
           onChangeIndex={ this.handleChangeIndex }>
           <TabPanel value={ this.state.value } index={ 0 }>
             <span>Your matches:</span>
