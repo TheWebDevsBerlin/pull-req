@@ -1,75 +1,27 @@
 
 import React, { Component } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { login } from '../services/auth';
+import { withRouter } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Signup from './Signup';
 
-export default class Login extends Component {
-  state = {
-    username: '',
-    password: '',
-    message: ''
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const { username, password } = this.state;
-
-    login(username, password).then(data => {
-      if (data.message) {
-        this.setState({
-          message: data.message,
-          username: '',
-          password: ''
-        });
-      } else {
-        // successfully logged in
-        // update the state for the parent component
-        this.props.setUser(data);
-        this.props.history.push('/projects');
-      }
-    });
-  };
-
+class Login extends Component {
   render() {
+    console.log(this.props.match.params);
     return (
-      <>
-        <h2>Login</h2>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label htmlFor='username'>Username: </Form.Label>
-            <Form.Control
-              type='text'
-              name='username'
-              value={this.state.username}
-              onChange={this.handleChange}
-              id='username'
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor='password'>Password: </Form.Label>
-            <Form.Control
-              type='password'
-              name='password'
-              value={this.state.password}
-              onChange={this.handleChange}
-              id='password'
-            />
-          </Form.Group>
-          {this.state.message && (
-            <Alert variant='danger'>{this.state.message}</Alert>
-          )}
-          <Button type='submit'>Login</Button>
-        </Form>
-      </>
+      <React.Fragment>
+        <CssBaseline />
+        <Container maxWidth="sm" style={ { margin: '2rem', padding: '2rem' } }>
+          <Typography component="article">
+            <h1>Sign up or login</h1>
+            <p>Sign up and login to Pull-Req app in order to chat with ____ regarding a solution for your issue or just get to know a new friend.</p>
+            <Signup user={ this.props.match.params.person } />
+          </Typography>
+        </Container>
+      </React.Fragment>
     );
   }
 }
+
+export default withRouter(Login);
