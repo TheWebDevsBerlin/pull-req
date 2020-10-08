@@ -74,7 +74,7 @@ export default function SendMessageDialog(props) {
             </p>
           </Typography>
           <TextareaAutosize
-            value={ props.message }
+          value={ props.message }
             onChange={ props.handleMessageChange }
             aria-label="empty textarea"
             placeholder="Why is your code so bad?"

@@ -14,15 +14,25 @@ const SwiptButtons = (props) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-// https://api.github.com/repos/giladt/getHired/issues/4/comments
-// https://api.github.com/repos/giladt/getHired/issues/4/comments
 
   const handleMessageSend = () => {
+
+    const label = props.labels ? props.labels[props.labels.length - 1] : '';
+    const user = props.user || '';
+
+    const temp_message = ` 
+  ${message}\n
+  ###Hi ${label.owner.login || 'there'},
+  This message has been sent from <a href="https://github.com/TheWebDevsBerlin/pull-req">Pull-req</a>, to connect with ${user.displayName || ''}, please follow this <a href="http://pull-req.herokuapp.com/chat/${user._id}">Link</a>.
+
+  Cheers,
+  Pull-req team!
+  `;
     axios.post('/api/label/comment', {
-      owner: 'giladt', // props.label.repo_id.owner, 
-      repo: 'getHired', // props.label.repo_id.repo, 
-      issue_number: 5, // props.label.issue_number, 
-      body: message
+      owner: label.owner.login,
+      repo: label.repo_id.repo,
+      issue_number: label.issue_number,
+      body: temp_message
     }).then(res => {
       console.log('message sent successfully', { res });
       setOpen(false);
@@ -38,7 +48,7 @@ const SwiptButtons = (props) => {
   const handleMessageChange = (e) => {
     setMessage(e.target.value)
   }
-
+  
   return (
     
     <div className="buttons">
@@ -48,12 +58,10 @@ const SwiptButtons = (props) => {
         <CloseIcon fontSize="large" />
       </IconButton>
 
-
       <IconButton className="buttons_github" 
         onClick={() => window.open(props.label.repo.html_url)}>
         <GitHubIcon fontSize="large" />
       </IconButton>
-
 
       <IconButton className="buttons_pull">
         <img src={ Logo } alt="PullReqLogo" width="40rem" onClick={ handleClickOpen } />
@@ -62,12 +70,10 @@ const SwiptButtons = (props) => {
         handleClose={ handleClose }
         handleMessageSend={ handleMessageSend }
         message={ message }
-        label={ props.label }
+        setMessage={ setMessage }
         handleMessageChange={ handleMessageChange }
         open={ open }
       />
-      
-      
 
     </div>
   );

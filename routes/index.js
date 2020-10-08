@@ -34,6 +34,7 @@ let getData = async (query, per_page, page) => {
       },
       image: entry.user.avatar_url || entry.user.gravatar_id || 'placeholder.jpg',
       title: entry.title,
+      issue_number: entry.number,
       description: entry.body,
       created_at: entry.created_at,
       updated_at: entry.updated_at,
@@ -109,7 +110,7 @@ router.get('/api/labels', async (req, res, next) => {
 
 router.post('/api/label/comment', async (req, res, next) => {
   const { owner, repo, issue_number, body } = req.body;
-  console.log(owner, repo, issue_number);
+  console.log(owner, repo, issue_number, body);
   try {
     const comment = await octokit.issues.createComment({
       owner, repo, issue_number, body

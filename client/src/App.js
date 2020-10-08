@@ -128,9 +128,10 @@ class App extends Component {
               handleCardLeftScreen={ this.handleCardLeftScreen }
               setBackButton={ this.setBackButton }
             />
-            { this.state.user ?
+            { this.state.user && this.state.labels ?
               (<SwipeButtons
-                label={ this.state.labels[this.state.labels.length - 1] }
+                user={ this.state.user }
+                labels={ this.state.labels }
                 handleCardLeftScreen={ this.handleCardLeftScreen }
               />) :
               (<Signup user={ this.state.user } />)
