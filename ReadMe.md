@@ -37,14 +37,13 @@ Pull-request utilizes the GitHub API and the ocktokit/rest api client for data. 
 ## Interface
 The app is optimized for mobile and desktop devices and is fully responsive in all formats. The interface is designed to be clean and accessible to give users an intuitive experience.
 
-![Pull-Req](client/src/images/MobileIcon.png)
-
 ## ToDos
 
-* Message lazy loading
-* User type - Looking for help 
 * Light and Dark theme settings
+* Message lazy loading
+* Change swipe functionality to browse back and forth in stead of removing the card
 * Allow code snippets in chat
+* User type - Looking for help 
 * Filter options for language, tools and labels
 
 ## Installation
@@ -64,6 +63,5 @@ Please make sure to update tests as appropriate.
 [Gilad Tsabar](https://github.com/giladt) 
 & [Daniel Parry](https://github.com/DanP20) 
 
+![Pull-Req](client/src/images/MobileIcon.png)
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
