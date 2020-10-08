@@ -92,7 +92,7 @@ export default function SendMessageDialog(props) {
         </DialogContent>
 
         <DialogActions>
-          <Button autoFocus onClick={ props.handleSend } color="primary">
+        <Button autoFocus onClick={ props.handleMessageSend } color="primary">
             Pull request
           </Button>
           <Button autoFocus onClick={ props.handleClose } color="primary">
