@@ -5,6 +5,7 @@ import TinderCards from "./components/TinderCards"
 import SwipeButtons from "./components/navigation/buttons/SwipeButtons";
 import Chats from "./components/chat/Chats";
 import ChatScreen from "./components/chat/ChatScreen";
+import Login from "./components/Login";
 import Signup from "./components/Signup";
 import SideMenu from "./components/navigation/Menu";
 import axios from 'axios';
@@ -101,7 +102,9 @@ class App extends Component {
                 to={ this.state.to }
                 isConnected={ this.isConnected }
                 setBackButton={ this.setBackButton } />) :
-              (<Redirect to='/' />) }
+              (
+                <Login />
+              ) }
           </Route>
           <Route exact path="/chat">
             { this.state.user ? (
@@ -110,8 +113,11 @@ class App extends Component {
                 updateToField={ this.updateToField }
                 connectedUsers={ this.state.connectedUsers }
                 setBackButton={ this.setBackButton } />) :
-              (<Redirect to='/' />)
+              (<Redirect to='/login' />)
             }
+          </Route>
+          <Route exact path='login'>
+            <Login />
           </Route>
           <Route exact path="/">
             <TinderCards

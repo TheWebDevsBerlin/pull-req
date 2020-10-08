@@ -19,9 +19,9 @@ const SwiptButtons = (props) => {
 
   const handleMessageSend = () => {
     axios.post('/api/label/comment', {
-      owner: 'giladt',
-      repo: 'getHired',
-      issue_number: 4,
+      owner: 'giladt', // props.label.repo_id.owner, 
+      repo: 'getHired', // props.label.repo_id.repo, 
+      issue_number: 5, // props.label.issue_number, 
       body: message
     }).then(res => {
       console.log('message sent successfully', { res });
