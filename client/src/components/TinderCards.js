@@ -6,7 +6,8 @@ import gitPullRequest from '@iconify/icons-octicon/git-pull-request';
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
-import { formatRelative, subDays } from 'date-fns'
+import { formatRelative, subDays } from 'date-fns';
+
 
 class TinderCards extends Component {
 
@@ -30,10 +31,12 @@ class TinderCards extends Component {
         <div className="cards__cardcontainer">
           { this.props.labels.map((label) => (
             <TinderCard
-              className="swipe"
+              className="swipe watermarked"
               key={label._id}
               preventSwipe={["up", "down"]}
               onCardLeftScreen={ () => this.props.handleCardLeftScreen(label._id) } 
+            
+                
             >
               <div
                 style={{ backgroundImage: `url(${label.image})` }}
@@ -72,7 +75,8 @@ class TinderCards extends Component {
                 <>
                   <p>{ label.repo.about }</p>
                   <p>{ label.repo.title }</p>
-                </>
+
+                 </>
               ) }
             </TinderCard>
           ))}

@@ -58,7 +58,7 @@
   position: absolute;
   width: 90vw;
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 0 auto; 
   background-color: white;
   height: calc(100vh - 12rem - 2px);
   overflow: hidden;
@@ -67,3 +67,12 @@
   .swipe>p {
     padding: 0.25rem 1rem;
   }
+
+  .watermarked{
+    background-image: url("../images/help-wanted.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: 87%;
+    background-size: 15rem;
+  }
+

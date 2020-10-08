@@ -42,7 +42,7 @@ function Navbar({ backButton, user, menuIsOpen, setMenuIsOpen }) {
       )}
       
       <Link to="/">
-        <img src={ Logo } alt="PullReqLogo" width="40rem" /> ull request
+        <img src={ Logo } alt="PullReqLogo" width="40rem" />ull-req
       </Link>
 
       <Link to="/chat">
