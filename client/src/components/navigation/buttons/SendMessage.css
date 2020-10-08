@@ -1,0 +1,19 @@
+.dialogHeader {
+  display: flex;
+  justify-content: center;
+  border:none;
+  padding: 1rem !important;
+}
+
+.textArea {
+  padding: 0.25rem !important;
+
+}
+
+p {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+
+
+}
+
+

@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
@@ -11,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Logo from './../../../images/PullReqGreen.svg';
+import './SendMessage.css';
 
 const styles = (theme) => ({
   root: {
@@ -64,16 +65,17 @@ export default function SendMessageDialog(props) {
         fullScreen={ fullScreen }
         aria-labelledby="customized-dialog-title"
         open={ props.open }>
-        <DialogTitle id="customized-dialog-title" onClose={ props.handleClose }>
-          <h3>Send a pull request!</h3>
+        <DialogTitle id="customized-dialog-title" onClose={ props.handleClose } className="dialogHeader">
+           <img src={ Logo } alt="PullReqLogo" width="38rem" align="center"/>
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             <p>
-              Your message will be sent to the repo owner on GitHub
+            Your message will be sent to the project owner, if they accept your offer, you will be able to chat...<br/><br/>
+            <strong>git commit -m "</strong>
             </p>
           </Typography>
-          <TextareaAutosize
+          <TextareaAutosize  className="textArea"
             value={ props.message }
             onChange={ props.handleMessageChange }
             aria-label="empty textarea"
@@ -89,15 +91,25 @@ export default function SendMessageDialog(props) {
               minHeight: '5rem'
             } }
           />
+           <Typography gutterBottom>
+            <p>
+            <strong>"</strong>
+              {/* <br/>
+              This message has been sent from Pull-request, 
+              to connect with the sender, follow this link:
+              ----URL GOES HERE----  */}
+            </p>
+          </Typography>
         </DialogContent>
 
         <DialogActions>
-        <Button autoFocus onClick={ props.handleMessageSend } color="primary">
-            Pull request
-          </Button>
-          <Button autoFocus onClick={ props.handleClose } color="primary">
+        <IconButton autoFocus onClick={ props.handleClose } color="secondary">
             Cancel
-          </Button>
+          </IconButton>
+        <IconButton autoFocus onClick={ props.handleMessageSend } color="inherit">
+            Pull request
+          </IconButton>
+          
         </DialogActions>
       </Dialog>
     

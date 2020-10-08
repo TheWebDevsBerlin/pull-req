@@ -41,10 +41,11 @@ The app is optimized for mobile and desktop devices and is fully responsive in a
 
 ## ToDos
 
-* Message lazy loading
-* User type - Looking for help 
 * Light and Dark theme settings
+* Message lazy loading
+* Change swipe functionality to browse back and forth in stead of removing the card
 * Allow code snippets in chat
+* User type - Looking for help 
 * Filter options for language, tools and labels
 
 ## Installation
