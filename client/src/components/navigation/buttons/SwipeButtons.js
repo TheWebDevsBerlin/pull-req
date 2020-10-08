@@ -50,7 +50,10 @@ const SwiptButtons = (props) => {
     setMessage(e.target.value)
   }
   
-  return (
+  return !props.label ?
+    (
+      <h1>Fetching some more issues...</h1>
+    ) : (
     
     <div className="buttons">
       <IconButton

@@ -79,7 +79,11 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return !this.state.labels ?
+      (
+        <h1>Loading...</h1>
+      ) :
+      (
       <Router className="App">
         <Navbar
           user={ this.state.user }
@@ -132,6 +136,7 @@ class App extends Component {
               (<SwipeButtons
                 user={ this.state.user }
                 labels={ this.state.labels }
+                  label={ this.state.labels[this.state.labels.length - 1] }
                 handleCardLeftScreen={ this.handleCardLeftScreen }
               />) :
               (<Signup user={ this.state.user } />)
