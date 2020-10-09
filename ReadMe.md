@@ -45,12 +45,29 @@ The app is optimized for mobile and desktop devices and is fully responsive in a
 * Allow code snippets in chat
 * User type - Looking for help 
 * Filter options for language, tools and labels
+* Notifications for chats
 
 ## Installation
 
+You'll need to get your own Github token for authentication and, client id & password for the api.
+.env file structure:
+```.env
+PORT=5555
+ENV=development
+API_SERVER_URL=http://localhost:5555
+API_CLIENT_URL=http://localhost:3000
+SESSION_SECRET=...
+GITHUB_CLIENT_ID=...
+GITHUB_CLIENT_SECRET=...
+GITHUB_TOKEN=...
+MONGODB_USER=...
+MONGODB_PASSWORD=...
+```
 
 ```npm
+cd client && npm install
 npm install 
+npm run dev
 ```
 
 
@@ -63,5 +80,4 @@ Please make sure to update tests as appropriate.
 [Gilad Tsabar](https://github.com/giladt) 
 & [Daniel Parry](https://github.com/DanP20) 
 
-![Pull-Req](client/src/images/MobileIcon.png)
-
+<img src="./client/src/images/PullReqIcon.svg" width="50" alt="pull-req logo" />
