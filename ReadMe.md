@@ -10,7 +10,7 @@ Pull-request is a collaboration platform that allows users to browse GitHub repo
 The app only displays projects labeled as <strong>'Help Wanted'</strong> to encourage this collaboration.
 
 ## Demo
-Click [here](https://pull-req.herokuapp.com) to see live demo.
+Click [here](https://pull-req.herokuapp.com) to see live a demo.
 
 ## How it works 
 The UI is similar to dating app designs in that the homepage is populated with potential matches that the user interacts with via by swiping. Once the user finds a project they would like to collaborate on they send a message, or "Pull-request", to the owner. This message arrives as a comment on the GitHub repo issue page and contains a custom URL that directs the repo owner to a chat session with our original user in the Pull-request app.  
